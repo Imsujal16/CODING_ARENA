@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/onboardingFragment">
+
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.arena.app.ui.onboarding.OnboardingFragment"
+        android:label="Onboarding"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboarding_to_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/onboardingFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.arena.app.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_learn"
+        android:name="com.arena.app.ui.learn.LearnFragment"
+        android:label="Learn"
+        tools:layout="@layout/fragment_learn" />
+
+    <fragment
+        android:id="@+id/navigation_arena"
+        android:name="com.arena.app.ui.arena.ArenaFragment"
+        android:label="Arena"
+        tools:layout="@layout/fragment_arena">
+        <action
+            android:id="@+id/action_arena_to_battleResult"
+            app:destination="@id/battleResultFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_rank"
+        android:name="com.arena.app.ui.leaderboard.LeaderboardFragment"
+        android:label="Leaderboard"
+        tools:layout="@layout/fragment_leaderboard" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.arena.app.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/problemSolverFragment"
+        android:name="com.arena.app.ui.solver.ProblemSolverFragment"
+        android:label="Solve Problem"
+        tools:layout="@layout/fragment_problem_solver" />
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.arena.app.ui.profile.EditProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <fragment
+        android:id="@+id/battleResultFragment"
+        android:name="com.arena.app.ui.arena.BattleResultFragment"
+        android:label="Battle Result"
+        tools:layout="@layout/fragment_battle_result">
+        <action
+            android:id="@+id/action_battleResult_to_arena"
+            app:destination="@id/navigation_arena"
+            app:popUpTo="@id/navigation_arena"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out_down" />
+    </fragment>
+
+</navigation>

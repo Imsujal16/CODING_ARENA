@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- Toolbar -->
+    <ImageView
+        android:id="@+id/btn_lb_back"
+        android:layout_width="@dimen/icon_size_large"
+        android:layout_height="@dimen/icon_size_large"
+        android:layout_margin="@dimen/spacing_md"
+        android:padding="4dp"
+        android:contentDescription="@string/cd_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_nav_home" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/global_leaderboard"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_title"
+        app:layout_constraintTop_toTopOf="@id/btn_lb_back"
+        app:layout_constraintBottom_toBottomOf="@id/btn_lb_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Main Tab Bar: Global | Friends | School | Country -->
+    <LinearLayout
+        android:id="@+id/tab_main"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/btn_lb_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tab_global"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/chip_height"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_selected"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/global"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_caption" />
+
+        <TextView
+            android:id="@+id/tab_friends"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/chip_height"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/friends"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_caption" />
+
+        <TextView
+            android:id="@+id/tab_school"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/chip_height"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/school"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_caption" />
+
+        <TextView
+            android:id="@+id/tab_country"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/chip_height"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/country"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_caption" />
+    </LinearLayout>
+
+    <!-- Sub-tabs: Today | This Week | All Time -->
+    <LinearLayout
+        android:id="@+id/tab_period"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tab_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tab_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingVertical="@dimen/spacing_xs"
+            android:text="@string/today"
+            android:textColor="@color/primary_blue"
+            android:textSize="@dimen/text_caption" />
+
+        <TextView
+            android:id="@+id/tab_this_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingVertical="@dimen/spacing_xs"
+            android:text="@string/this_week"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_caption" />
+
+        <TextView
+            android:id="@+id/tab_all_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingVertical="@dimen/spacing_xs"
+            android:text="@string/all_time"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_caption" />
+    </LinearLayout>
+
+    <!-- Podium -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/podium_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_md"
+        app:layout_constraintTop_toBottomOf="@id/tab_period"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Rank 2 (Left - Silver) -->
+        <LinearLayout
+            android:id="@+id/podium_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/podium_1"
+            android:layout_marginTop="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="SILVER"
+                android:textColor="@color/silver"
+                android:textSize="@dimen/text_overline" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_rank2"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/bg_avatar_circle"
+                app:civ_border_color="@color/silver"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/text_rank2_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Sujal"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_caption" />
+
+            <TextView
+                android:id="@+id/text_rank2_xp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="14,200 XP"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_overline" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/podium_height_2"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:background="@drawable/bg_podium_silver" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="2"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_headline_2" />
+        </LinearLayout>
+
+        <!-- Rank 1 (Center - Gold/Champion) -->
+        <LinearLayout
+            android:id="@+id/podium_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/podium_2"
+            app:layout_constraintEnd_toStartOf="@id/podium_3">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_crown" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/champion"
+                android:textColor="@color/champion_gold"
+                android:textSize="@dimen/text_overline" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_rank1"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/bg_avatar_circle"
+                app:civ_border_color="@color/champion_gold"
+                app:civ_border_width="3dp" />
+
+            <TextView
+                android:id="@+id/text_rank1_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Gautam"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_body_small" />
+
+            <TextView
+                android:id="@+id/text_rank1_xp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="15,400 XP"
+                android:textColor="@color/primary_blue"
+                android:textSize="@dimen/text_caption" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/podium_height_1"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:background="@drawable/bg_podium_gold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="1"
+                android:textColor="@color/champion_gold"
+                android:textSize="@dimen/text_headline_2" />
+        </LinearLayout>
+
+        <!-- Rank 3 (Right - Bronze) -->
+        <LinearLayout
+            android:id="@+id/podium_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/podium_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="BRONZE"
+                android:textColor="@color/bronze"
+                android:textSize="@dimen/text_overline" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_rank3"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/bg_avatar_circle"
+                app:civ_border_color="@color/bronze"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/text_rank3_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Yash"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_caption" />
+
+            <TextView
+                android:id="@+id/text_rank3_xp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="13,800 XP"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_overline" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/podium_height_3"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:background="@drawable/bg_podium_bronze" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="3"
+                android:textColor="@color/bronze"
+                android:textSize="@dimen/text_headline_2" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Scrollable list for ranks 4+ -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_leaderboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:clipToPadding="false"
+        android:paddingBottom="72dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/podium_container"
+        app:layout_constraintBottom_toTopOf="@id/card_current_user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Current user rank card at bottom -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_current_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginBottom="@dimen/spacing_sm"
+        app:cardCornerRadius="@dimen/corner_card"
+        app:cardElevation="@dimen/elevation_card"
+        app:cardBackgroundColor="@color/leaderboard_highlight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_md">
+
+            <TextView
+                android:id="@+id/text_current_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="42"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_body"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_current_user"
+                android:layout_width="@dimen/avatar_small"
+                android:layout_height="@dimen/avatar_small"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:src="@drawable/bg_avatar_circle"
+                app:civ_border_color="@color/primary_blue"
+                app:civ_border_width="1dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_current_rank" />
+
+            <TextView
+                android:id="@+id/text_current_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Hacker"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_body_small"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_current_user" />
+
+            <TextView
+                android:id="@+id/text_next_rank_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:fontFamily="@font/poppins_regular"
+                android:text="NEXT RANK: 320 XP"
+                android:textColor="@color/primary_blue"
+                android:textSize="@dimen/text_overline"
+                app:layout_constraintTop_toBottomOf="@id/text_current_username"
+                app:layout_constraintStart_toEndOf="@id/img_current_user" />
+
+            <TextView
+                android:id="@+id/text_total_xp_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="5,400"
+                android:textColor="@color/primary_blue"
+                android:textSize="@dimen/text_body_small"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

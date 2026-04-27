@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_xs"
+    app:cardCornerRadius="@dimen/corner_card"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/card_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Problem icon -->
+        <FrameLayout
+            android:id="@+id/frame_activity_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_chip_unselected"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/icon_activity"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_nav_learn"
+                app:tint="@color/coins_orange" />
+        </FrameLayout>
+
+        <!-- Green check -->
+        <ImageView
+            android:id="@+id/icon_solved_check"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_check"
+            android:contentDescription="@string/cd_check"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Problem display title -->
+        <TextView
+            android:id="@+id/text_activity_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:fontFamily="@font/poppins_medium"
+            android:text="1. Two Sum"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body_small"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/frame_activity_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Difficulty chip -->
+        <TextView
+            android:id="@+id/chip_activity_difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:background="@drawable/bg_chip_easy"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:text="EASY"
+            android:textColor="@color/difficulty_easy"
+            android:textSize="@dimen/text_overline"
+            app:layout_constraintTop_toBottomOf="@id/text_activity_title"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Time ago -->
+        <TextView
+            android:id="@+id/text_time_ago"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins_regular"
+            android:text="2 hours ago"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_overline"
+            app:layout_constraintTop_toBottomOf="@id/chip_activity_difficulty"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_xs"
+    app:cardCornerRadius="@dimen/corner_card"
+    app:cardElevation="1dp"
+    app:cardBackgroundColor="@color/card_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Problem icon circle -->
+        <FrameLayout
+            android:id="@+id/frame_problem_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_chip_unselected"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/icon_problem_status"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_nav_learn"
+                app:tint="@color/text_secondary" />
+        </FrameLayout>
+
+        <!-- Problem title -->
+        <TextView
+            android:id="@+id/text_problem_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_sm"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Two Sum"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body_small"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/frame_problem_icon"
+            app:layout_constraintEnd_toStartOf="@id/text_problem_xp" />
+
+        <!-- Difficulty + Topic chips -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_sm"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/text_problem_title"
+            app:layout_constraintStart_toEndOf="@id/frame_problem_icon"
+            app:layout_constraintEnd_toStartOf="@id/text_problem_xp">
+
+            <TextView
+                android:id="@+id/chip_problem_difficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_chip_easy"
+                android:fontFamily="@font/poppins_medium"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="Easy"
+                android:textColor="@color/difficulty_easy"
+                android:textSize="@dimen/text_overline" />
+
+            <TextView
+                android:id="@+id/text_problem_topic_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="• Arrays"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_overline" />
+        </LinearLayout>
+
+        <!-- XP reward -->
+        <TextView
+            android:id="@+id/text_problem_xp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="+10 XP"
+            android:textColor="@color/xp_purple"
+            android:textSize="@dimen/text_caption"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

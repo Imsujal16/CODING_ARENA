@@ -1,0 +1,9 @@
+.env
+.idea/
+*.apk
+*.jar
+tmp_clerk_aar/
+Arena/local.properties
+Arena/.gradle/
+Arena/build/
+Arena/app/build/

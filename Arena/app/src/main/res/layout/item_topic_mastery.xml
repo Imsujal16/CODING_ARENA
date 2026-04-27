@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_sm"
+    app:cardCornerRadius="@dimen/corner_card"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/card_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Topic icon -->
+        <FrameLayout
+            android:id="@+id/frame_topic_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_chip_unselected"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/icon_topic"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_nav_learn"
+                app:tint="@color/primary_blue" />
+        </FrameLayout>
+
+        <!-- Topic name -->
+        <TextView
+            android:id="@+id/text_topic_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_sm"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Arrays &amp;\nHashing"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body_small"
+            app:layout_constraintTop_toTopOf="@id/frame_topic_icon"
+            app:layout_constraintStart_toEndOf="@id/frame_topic_icon"
+            app:layout_constraintEnd_toStartOf="@id/text_topic_progress" />
+
+        <!-- Next problem -->
+        <TextView
+            android:id="@+id/text_next_problem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_sm"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Next: Valid Sudoku"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_caption"
+            app:layout_constraintTop_toBottomOf="@id/text_topic_name"
+            app:layout_constraintStart_toEndOf="@id/frame_topic_icon"
+            app:layout_constraintEnd_toStartOf="@id/text_topic_progress" />
+
+        <!-- Progress fraction -->
+        <TextView
+            android:id="@+id/text_topic_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="6/10"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body_small"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_play" />
+
+        <!-- Play button -->
+        <ImageView
+            android:id="@+id/btn_play"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/spacing_sm"
+            android:src="@drawable/ic_play"
+            app:tint="@color/primary_blue"
+            android:contentDescription="@string/cd_play"
+            android:padding="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

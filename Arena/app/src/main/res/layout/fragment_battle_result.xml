@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/overlay_dark">
+
+    <!-- Bottom sheet -->
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_sheet"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_lg"
+        android:paddingTop="@dimen/spacing_xl"
+        android:paddingBottom="@dimen/spacing_lg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Avatar with LVL badge -->
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="96dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_result_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="top|center_horizontal"
+                android:src="@drawable/bg_avatar_circle"
+                app:civ_border_color="@color/primary_blue"
+                app:civ_border_width="3dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="G"
+                android:textColor="@color/text_white"
+                android:textSize="24sp"
+                android:fontFamily="@font/poppins_bold" />
+
+            <TextView
+                android:id="@+id/badge_result_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@drawable/bg_chip_selected"
+                android:fontFamily="@font/poppins_bold"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="2dp"
+                android:text="LVL 12"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/text_overline" />
+        </FrameLayout>
+
+        <!-- VICTORY / DEFEAT text -->
+        <TextView
+            android:id="@+id/text_result_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/victory"
+            android:textColor="@color/victory_teal"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/text_match_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/match_completed"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_caption"
+            android:letterSpacing="0.15" />
+
+        <!-- 2x2 Stats Grid -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_lg">
+
+            <!-- TIME card -->
+            <LinearLayout
+                android:id="@+id/stat_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_sm"
+                android:background="@drawable/bg_stat_card"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/stat_accuracy"
+                app:layout_constraintWidth_percent="0.48">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_clock" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/time_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
+
+                <TextView
+                    android:id="@+id/text_stat_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="12:45"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_headline_3" />
+            </LinearLayout>
+
+            <!-- ACCURACY card -->
+            <LinearLayout
+                android:id="@+id/stat_accuracy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stat_card"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/stat_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.48">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_target" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/accuracy_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
+
+                <TextView
+                    android:id="@+id/text_stat_accuracy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="98%"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_headline_3" />
+            </LinearLayout>
+
+            <!-- XP GAINED card -->
+            <LinearLayout
+                android:id="@+id/stat_xp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:layout_marginEnd="@dimen/spacing_sm"
+                android:background="@drawable/bg_stat_card"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md"
+                app:layout_constraintTop_toBottomOf="@id/stat_time"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/stat_coins"
+                app:layout_constraintWidth_percent="0.48">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_xp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/xp_gained_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
+
+                <TextView
+                    android:id="@+id/text_stat_xp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="+250"
+                    android:textColor="@color/xp_purple"
+                    android:textSize="@dimen/text_headline_3" />
+            </LinearLayout>
+
+            <!-- COINS card -->
+            <LinearLayout
+                android:id="@+id/stat_coins"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:background="@drawable/bg_stat_card"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md"
+                app:layout_constraintTop_toBottomOf="@id/stat_accuracy"
+                app:layout_constraintStart_toEndOf="@id/stat_xp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.48">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_coin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/coins_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
+
+                <TextView
+                    android:id="@+id/text_stat_coins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="+50"
+                    android:textColor="@color/coins_orange"
+                    android:textSize="@dimen/text_headline_3" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Back to Arena button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_back_to_arena"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/back_to_arena"
+            android:textAllCaps="false"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_body"
+            app:backgroundTint="@color/primary_blue"
+            app:cornerRadius="@dimen/corner_button" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

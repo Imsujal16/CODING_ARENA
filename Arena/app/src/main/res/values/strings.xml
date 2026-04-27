@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">Arena</string>
+
+    <!-- Onboarding -->
+    <string name="welcome_to">Welcome to</string>
+    <string name="arena_title">ARENA</string>
+    <string name="hey_coder">Hey Coder</string>
+    <string name="onboarding_description">Master algorithms and compete with the best developers worldwide.</string>
+    <string name="get_started">Get Started  →</string>
+
+    <!-- Home -->
+    <string name="good_morning">Good Morning,</string>
+    <string name="user_name_default">Gautam</string>
+    <string name="current_xp">Current XP</string>
+    <string name="rank_label">Rank</string>
+    <string name="daily_streak">Daily\nStreak</string>
+    <string name="days_suffix">Days</string>
+    <string name="lvl_prefix">LVL</string>
+    <string name="solve_challenge">Solve Challenge  →</string>
+    <string name="continue_learning">Continue Learning</string>
+    <string name="view_all">View All</string>
+    <string name="daily_challenge">Daily Challenge</string>
+    <string name="xp_format">+%d XP</string>
+
+    <!-- Learn -->
+    <string name="welcome_back">Welcome back,</string>
+    <string name="curated_roadmaps">Curated Roadmaps</string>
+    <string name="topic_mastery">Topic Mastery</string>
+    <string name="up_next">Up Next</string>
+    <string name="most_popular">MOST POPULAR</string>
+    <string name="filter_all">All</string>
+    <string name="filter_easy">Easy</string>
+
+    <!-- Arena / Battle -->
+    <string name="battle_lobby">Battle Lobby</string>
+    <string name="vs">VS</string>
+    <string name="searching">Searching…</string>
+    <string name="searching_rank">Rank 1200–1500</string>
+    <string name="battle_config">Battle Config</string>
+    <string name="custom_match">Custom Match</string>
+    <string name="difficulty">DIFFICULTY</string>
+    <string name="topics">TOPICS</string>
+    <string name="bet">BET</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="algorithms">Algorithms</string>
+    <string name="strings_topic">Strings</string>
+    <string name="dynamic_prog">Dynamic Prog</string>
+    <string name="trees">Trees</string>
+    <string name="graphs">Graphs</string>
+    <string name="fight">⚡ FIGHT</string>
+    <string name="coin_format">₹ %d</string>
+
+    <!-- Battle Result -->
+    <string name="victory">VICTORY</string>
+    <string name="defeat">DEFEAT</string>
+    <string name="match_completed">MATCH COMPLETED</string>
+    <string name="time_label">TIME</string>
+    <string name="accuracy_label">ACCURACY</string>
+    <string name="xp_gained_label">XP GAINED</string>
+    <string name="coins_label">COINS</string>
+    <string name="back_to_arena">Back to Arena  →</string>
+
+    <!-- Leaderboard -->
+    <string name="global_leaderboard">Global Leaderboard</string>
+    <string name="global">Global</string>
+    <string name="friends">Friends</string>
+    <string name="school">School</string>
+    <string name="country">Country</string>
+    <string name="today">Today</string>
+    <string name="this_week">This Week</string>
+    <string name="all_time">All Time</string>
+    <string name="champion">CHAMPION</string>
+    <string name="xp_suffix">XP</string>
+    <string name="next_rank">NEXT RANK:</string>
+    <string name="total_xp">TOTAL XP:</string>
+
+    <!-- Profile -->
+    <string name="edit_profile">Edit profile</string>
+    <string name="points_label">POINTS</string>
+    <string name="streak_label">STREAK</string>
+    <string name="following_format">%d Following</string>
+    <string name="followers_format">%d Followers</string>
+    <string name="recent_activity">Recent Activity</string>
+    <string name="links">Links</string>
+    <string name="share">Share</string>
+    <string name="settings">Settings</string>
+
+    <!-- Common -->
+    <string name="retry">Retry</string>
+    <string name="error_message">Something went wrong. Please try again.</string>
+    <string name="loading">Loading…</string>
+    <string name="next_prefix">Next:</string>
+    <string name="no_data">No data available</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_learn">Learn</string>
+    <string name="nav_arena">Arena</string>
+    <string name="nav_rank">Rank</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_avatar">User avatar</string>
+    <string name="cd_notification">Notifications</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_settings">Settings</string>
+    <string name="cd_back">Back</string>
+    <string name="cd_share">Share profile</string>
+    <string name="cd_fire">Streak fire icon</string>
+    <string name="cd_play">Play topic</string>
+    <string name="cd_lock">Locked problem</string>
+    <string name="cd_check">Completed</string>
+    <string name="sign_out_title">Sign out</string>
+    <string name="sign_out_message">Do you want to sign out of Arena on this device?</string>
+    <string name="sign_out_confirm">Sign out</string>
+    <string name="cancel">Cancel</string>
+    <string name="logout">Log out</string>
+
+    <!-- Auth -->
+    <string name="auth_tab_sign_in">Sign In</string>
+    <string name="auth_tab_sign_up">Sign Up</string>
+    <string name="auth_sign_in_title">Welcome back</string>
+    <string name="auth_sign_in_subtitle">Sign in with your Clerk account to sync your Arena progress in real time.</string>
+    <string name="auth_sign_up_title">Create your Arena account</string>
+    <string name="auth_sign_up_subtitle">Use your email to create a live account that stays connected across the app and website.</string>
+    <string name="auth_verify_title">Verify your email</string>
+    <string name="auth_verify_subtitle">Enter the code sent to %1$s to finish your sign-up.</string>
+    <string name="auth_google_complete_title">Finish Google sign-in</string>
+    <string name="auth_google_complete_subtitle">Google verified your account. Add the remaining profile details to finish setting up Arena.</string>
+    <string name="auth_hint_identifier">Email or username</string>
+    <string name="auth_hint_password">Password</string>
+    <string name="auth_hint_full_name">Full name</string>
+    <string name="auth_hint_username">Username</string>
+    <string name="auth_hint_email">Email address</string>
+    <string name="auth_hint_bio">Bio</string>
+    <string name="auth_hint_location">Location</string>
+    <string name="auth_hint_birthday">Birthday</string>
+    <string name="auth_hint_verification_code">Verification code</string>
+    <string name="auth_google_cta">Continue with Google</string>
+    <string name="auth_guest_cta">Continue without login</string>
+    <string name="auth_sign_in_cta">Continue</string>
+    <string name="auth_sign_up_cta">Create account</string>
+    <string name="auth_google_complete_cta">Finish Google sign-in</string>
+    <string name="auth_verify_cta">Verify and continue</string>
+    <string name="auth_resend_cta">Resend code</string>
+    <string name="auth_verify_hint">We use Clerk email verification so your session can be trusted by the backend APIs.</string>
+    <string name="auth_identifier_required">Enter your email or username.</string>
+    <string name="auth_password_required">Enter your password.</string>
+    <string name="auth_name_required">Enter your full name.</string>
+    <string name="auth_username_required">Enter a username.</string>
+    <string name="auth_email_invalid">Enter a valid email address.</string>
+    <string name="auth_verification_required">Enter the email verification code.</string>
+    <string name="auth_verification_sent">Verification code sent. Check your email.</string>
+    <string name="auth_verification_expired">Your sign-up session expired. Start again.</string>
+    <string name="auth_verification_incomplete">Verification is not complete yet. Please use the latest code.</string>
+    <string name="auth_sign_in_additional_factor">This account needs an additional sign-in factor that this screen does not support yet.</string>
+    <string name="auth_google_missing_username">Google sign-in needs a username to finish. Add one and continue.</string>
+    <string name="auth_google_missing_fields">Google sign-in needs a few more details. Complete the form and continue.</string>
+    <string name="auth_google_incomplete">Google sign-in did not finish yet. Please try again.</string>
+    <string name="auth_session_sync_failed">Login succeeded, but the session token could not be synced. Please try again.</string>
+    <string name="auth_generic_error">We could not complete authentication right now. Please try again.</string>
+
+    <!-- Solver -->
+    <string name="solver_title">Solve Problem</string>
+    <string name="solver_subtitle">Run code against custom input without leaving Arena.</string>
+    <string name="solver_open_problem">Open Problem</string>
+    <string name="solver_reset_code">Reset Code</string>
+    <string name="solver_run_code">Run Code</string>
+    <string name="solver_language">Language</string>
+    <string name="solver_code_hint">Write your solution here</string>
+    <string name="solver_input_hint">Custom input</string>
+    <string name="solver_output_label">Console Output</string>
+    <string name="solver_status_idle">Ready to compile.</string>
+    <string name="solver_output_idle">Run your code to see output here.</string>
+    <string name="solver_description_fallback">Open the original problem statement for the full prompt, examples, and constraints.</string>
+    <string name="solver_problem_number">Problem #%1$d</string>
+    <string name="solver_meta_format">%1$s | %2$s | +%3$d XP</string>
+    <string name="solver_no_problem_link">This problem does not have a source link yet.</string>
+    <string name="solver_code_required">Add some code before running the compiler.</string>
+    <string name="solver_running">Running your code...</string>
+    <string name="solver_success">Run completed successfully.</string>
+    <string name="solver_failed">Run finished with compiler output.</string>
+    <string name="solver_reset_done">Code template restored.</string>
+
+    <!-- Edit Profile -->
+    <string name="edit_profile_subtitle">Update the details shown across your Arena profile.</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="profile_updated">Profile updated.</string>
+    <string name="profile_username_required">Enter a username to save your profile.</string>
+    <string name="profile_name_hint">Display name</string>
+    <string name="profile_handle_hint">Handle</string>
+    <string name="profile_bio_hint">Bio</string>
+    <string name="profile_location_hint">Location</string>
+    <string name="profile_joined_hint">Joined date</string>
+    <string name="profile_birthday_hint">Birthday</string>
+    <string name="profile_level_hint">Level</string>
+    <string name="profile_xp_hint">XP</string>
+    <string name="profile_rank_hint">Rank</string>
+    <string name="profile_streak_hint">Streak</string>
+    <string name="profile_points_hint">Points</string>
+    <string name="profile_following_hint">Following</string>
+    <string name="profile_followers_hint">Followers</string>
+    <string name="profile_verified_hint">Show verified badge</string>
+</resources>

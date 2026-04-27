@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/roadmap_card_width"
+    android:layout_height="@dimen/roadmap_card_height"
+    android:layout_marginEnd="@dimen/spacing_sm"
+    app:cardCornerRadius="@dimen/corner_card"
+    app:cardElevation="@dimen/elevation_card">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/roadmap_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_roadmap_card_blue"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Badge -->
+        <TextView
+            android:id="@+id/text_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button_white"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:text="@string/most_popular"
+            android:textColor="@color/primary_blue"
+            android:textSize="@dimen/text_overline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Copy icon placeholder -->
+        <ImageView
+            android:id="@+id/icon_bookmark"
+            android:layout_width="@dimen/icon_size_default"
+            android:layout_height="@dimen/icon_size_default"
+            android:src="@drawable/ic_nav_learn"
+            app:tint="@color/text_white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/text_roadmap_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Striver's A2Z\nDSA Course"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_title"
+            android:lineSpacingMultiplier="1.1"
+            app:layout_constraintTop_toBottomOf="@id/text_badge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/text_roadmap_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Complete mastery from basics to advanced."
+            android:textColor="#CCFFFFFF"
+            android:textSize="@dimen/text_caption"
+            android:maxLines="2"
+            app:layout_constraintTop_toBottomOf="@id/text_roadmap_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Progress bar -->
+        <ProgressBar
+            android:id="@+id/progress_roadmap"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="6dp"
+            android:max="100"
+            android:progress="35"
+            android:progressDrawable="@android:drawable/progress_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/text_progress_percent" />
+
+        <TextView
+            android:id="@+id/text_progress_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_sm"
+            android:fontFamily="@font/poppins_bold"
+            android:text="35%"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_caption"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

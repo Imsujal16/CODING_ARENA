@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/onboarding_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/card_background">
+
+    <!-- Top gradient illustration area -->
+    <View
+        android:id="@+id/gradient_area"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/spacing_md"
+        android:background="@drawable/bg_onboarding_illustration"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.45" />
+
+    <!-- Welcome to text -->
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/welcome_to"
+        android:textColor="@color/text_primary"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/gradient_area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ARENA italic title -->
+    <TextView
+        android:id="@+id/text_arena"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/arena_title"
+        android:textColor="@color/primary_blue"
+        android:textSize="40sp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/text_welcome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Hey Coder subtitle -->
+    <TextView
+        android:id="@+id/text_hey_coder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/hey_coder"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_body"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/text_arena"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Description text -->
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/onboarding_description"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_body_small"
+        android:lineSpacingMultiplier="1.4"
+        app:layout_constraintTop_toBottomOf="@id/text_hey_coder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Dot indicators -->
+    <LinearLayout
+        android:id="@+id/dot_indicators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/text_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="8dp"
+            android:background="@drawable/dot_active" />
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/dot_inactive" />
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/dot_inactive" />
+    </LinearLayout>
+
+    <!-- Get Started button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_get_started"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginStart="@dimen/spacing_xl"
+        android:layout_marginEnd="@dimen/spacing_xl"
+        android:layout_marginBottom="@dimen/spacing_xxl"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/get_started"
+        android:textColor="@color/primary_blue"
+        android:textSize="@dimen/text_body"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/card_background"
+        app:cornerRadius="@dimen/corner_button"
+        app:elevation="@dimen/elevation_card"
+        app:strokeColor="@color/primary_blue"
+        app:strokeWidth="1.5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
