@@ -4,20 +4,23 @@ Coding Arena is an Android coding-practice app built around a competitive learni
 
 ## App Screenshots
 
-<p>
-  <img src="docs/screenshots/coding-arena-updated-preview.gif" alt="Coding Arena updated app animated preview" width="220">
-</p>
+<div align="center">
+  <img src="docs/screenshots/coding-arena-updated-preview.gif" alt="Coding Arena dark mode animated app preview" width="240">
+  <br>
+  <strong>Animated preview of the updated dark-mode experience</strong>
+</div>
 
-<p>
-  <img src="docs/screenshots/coding-arena-01.png" alt="Coding Arena Lottie splash animation screen" width="180">
-  <img src="docs/screenshots/coding-arena-02.png" alt="Coding Arena dark onboarding screen" width="180">
-  <img src="docs/screenshots/coding-arena-03.png" alt="Coding Arena dark auth screen" width="180">
-  <img src="docs/screenshots/coding-arena-04.png" alt="Coding Arena dark home screen" width="180">
-  <img src="docs/screenshots/coding-arena-05.png" alt="Coding Arena dark learn screen" width="180">
-  <img src="docs/screenshots/coding-arena-06.png" alt="Coding Arena dark arena screen" width="180">
-  <img src="docs/screenshots/coding-arena-07.png" alt="Coding Arena dark leaderboard screen" width="180">
-  <img src="docs/screenshots/coding-arena-08.png" alt="Coding Arena dark edit profile screen" width="180">
-</p>
+<br>
+
+| Splash & Onboarding | Authentication |
+| --- | --- |
+| <img src="docs/screenshots/coding-arena-01.png" alt="Coding Arena Lottie splash animation with Arena wordmark" width="220"><br><strong>Lottie Splash</strong><br><sub>Animated coding intro with the ARENA wordmark.</sub> | <img src="docs/screenshots/coding-arena-02.png" alt="Coding Arena dark onboarding screen" width="220"><br><strong>Onboarding</strong><br><sub>Dark-mode welcome screen for new coders.</sub> |
+| <img src="docs/screenshots/coding-arena-03.png" alt="Coding Arena dark authentication screen" width="220"><br><strong>Auth Hub</strong><br><sub>Sign in, sign up, Google login, and guest mode.</sub> | <img src="docs/screenshots/coding-arena-04.png" alt="Coding Arena dark home dashboard screen" width="220"><br><strong>Home Dashboard</strong><br><sub>XP, streak, daily challenge, and continue learning cards.</sub> |
+
+| Learning & Battles | Rankings & Profile |
+| --- | --- |
+| <img src="docs/screenshots/coding-arena-05.png" alt="Coding Arena dark learn and roadmap screen" width="220"><br><strong>Learn</strong><br><sub>Roadmaps and topic mastery for structured practice.</sub> | <img src="docs/screenshots/coding-arena-06.png" alt="Coding Arena dark arena battle setup screen" width="220"><br><strong>Arena</strong><br><sub>Battle setup for live coding and MCQ duels.</sub> |
+| <img src="docs/screenshots/coding-arena-07.png" alt="Coding Arena dark leaderboard screen" width="220"><br><strong>Leaderboard</strong><br><sub>Readable dark-mode ranks, XP, and player standings.</sub> | <img src="docs/screenshots/coding-arena-08.png" alt="Coding Arena dark edit profile screen" width="220"><br><strong>Edit Profile</strong><br><sub>Profile customization with accents, banner, and user details.</sub> |
 
 ## Features
 
