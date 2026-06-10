@@ -9,13 +9,14 @@ Coding Arena is an Android coding-practice app built around a competitive learni
 </p>
 
 <p>
-  <img src="docs/screenshots/coding-arena-01.png" alt="Coding Arena updated onboarding screen" width="180">
-  <img src="docs/screenshots/coding-arena-02.png" alt="Coding Arena updated auth screen" width="180">
-  <img src="docs/screenshots/coding-arena-03.png" alt="Coding Arena updated home screen" width="180">
-  <img src="docs/screenshots/coding-arena-04.png" alt="Coding Arena updated learn screen" width="180">
-  <img src="docs/screenshots/coding-arena-05.png" alt="Coding Arena updated arena screen" width="180">
-  <img src="docs/screenshots/coding-arena-06.png" alt="Coding Arena updated leaderboard screen" width="180">
-  <img src="docs/screenshots/coding-arena-07.png" alt="Coding Arena updated profile screen" width="180">
+  <img src="docs/screenshots/coding-arena-01.png" alt="Coding Arena Lottie splash animation screen" width="180">
+  <img src="docs/screenshots/coding-arena-02.png" alt="Coding Arena dark onboarding screen" width="180">
+  <img src="docs/screenshots/coding-arena-03.png" alt="Coding Arena dark auth screen" width="180">
+  <img src="docs/screenshots/coding-arena-04.png" alt="Coding Arena dark home screen" width="180">
+  <img src="docs/screenshots/coding-arena-05.png" alt="Coding Arena dark learn screen" width="180">
+  <img src="docs/screenshots/coding-arena-06.png" alt="Coding Arena dark arena screen" width="180">
+  <img src="docs/screenshots/coding-arena-07.png" alt="Coding Arena dark leaderboard screen" width="180">
+  <img src="docs/screenshots/coding-arena-08.png" alt="Coding Arena dark edit profile screen" width="180">
 </p>
 
 ## Features
