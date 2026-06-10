@@ -2,6 +2,18 @@
 
 Coding Arena is an Android coding-practice app built around a competitive learning experience. It includes authentication, profile management, a Striver A2Z problem sheet, leaderboards, arena-style coding battles, and an in-app code compiler for solving questions.
 
+## App Screenshots
+
+<p>
+  <img src="docs/screenshots/coding-arena-01.png" alt="Coding Arena app screenshot 1" width="180">
+  <img src="docs/screenshots/coding-arena-02.png" alt="Coding Arena app screenshot 2" width="180">
+  <img src="docs/screenshots/coding-arena-03.png" alt="Coding Arena app screenshot 3" width="180">
+  <img src="docs/screenshots/coding-arena-04.png" alt="Coding Arena app screenshot 4" width="180">
+  <img src="docs/screenshots/coding-arena-05.png" alt="Coding Arena app screenshot 5" width="180">
+  <img src="docs/screenshots/coding-arena-06.png" alt="Coding Arena app screenshot 6" width="180">
+  <img src="docs/screenshots/coding-arena-07.png" alt="Coding Arena app screenshot 7" width="180">
+</p>
+
 ## Features
 
 - Clerk authentication with sign in, sign up, Google sign-in, logout, and guest mode.
