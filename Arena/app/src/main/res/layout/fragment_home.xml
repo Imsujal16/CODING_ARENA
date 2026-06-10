@@ -32,10 +32,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_lg"
-            android:fontFamily="@font/poppins_bold"
+            style="@style/TextStyle.Headline2"
             android:text="@string/user_name_default"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_headline_2"
             app:layout_constraintTop_toBottomOf="@id/text_greeting"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/img_avatar" />
@@ -64,6 +62,46 @@
             app:layout_constraintBottom_toBottomOf="@id/img_avatar"
             app:layout_constraintStart_toStartOf="@id/img_avatar"
             app:layout_constraintEnd_toEndOf="@id/img_avatar" />
+
+        <!-- ══════════ SHIMMER skeleton (shown while data loads) ══════════ -->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:layout_marginTop="@dimen/spacing_lg"
+            app:layout_constraintTop_toBottomOf="@id/text_username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Shimmer row 1 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/shimmer_base"
+                    android:backgroundTint="@color/shimmer_base" />
+
+                <!-- Shimmer row 2 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/shimmer_base" />
+
+                <!-- Shimmer row 3 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@color/shimmer_base" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <!-- Stats Card -->
         <androidx.cardview.widget.CardView
@@ -347,10 +385,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_md"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:fontFamily="@font/poppins_bold"
+            style="@style/TextStyle.Headline3"
             android:text="@string/continue_learning"
-            android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_headline_3"
             app:layout_constraintTop_toBottomOf="@id/card_daily_challenge"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/text_view_all" />

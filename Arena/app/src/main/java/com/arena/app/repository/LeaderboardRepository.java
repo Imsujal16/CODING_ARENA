@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.arena.app.models.LeaderboardEntry;
 import com.arena.app.models.LeaderboardResponse;
+import com.arena.app.models.User;
 import com.arena.app.network.ApiClient;
 import com.arena.app.network.ApiService;
 import com.arena.app.utils.ClerkAuthHelper;
@@ -20,16 +21,17 @@ import retrofit2.Response;
 public class LeaderboardRepository {
     private final ApiService apiService;
     private final ClerkAuthHelper authHelper;
+    private final LocalProfileStore localProfileStore;
 
     public LeaderboardRepository(Context context) {
         Context appContext = context.getApplicationContext();
         apiService = ApiClient.getInstance(appContext).getApiService();
         authHelper = new ClerkAuthHelper(appContext);
+        localProfileStore = new LocalProfileStore(appContext);
     }
 
     public LiveData<List<LeaderboardEntry>> getLeaderboard(String tier, int limit) {
         MutableLiveData<List<LeaderboardEntry>> data = new MutableLiveData<>();
-        data.setValue(LeaderboardEntry.getMockLeaderboard());
 
         apiService.getLeaderboard(tier, limit).enqueue(new Callback<LeaderboardResponse>() {
             @Override
@@ -37,6 +39,7 @@ public class LeaderboardRepository {
                 if (!response.isSuccessful() || response.body() == null
                         || response.body().getLeaderboard() == null
                         || response.body().getLeaderboard().isEmpty()) {
+                    emitFallback(data);
                     return;
                 }
 
@@ -47,11 +50,17 @@ public class LeaderboardRepository {
 
             @Override
             public void onFailure(Call<LeaderboardResponse> call, Throwable t) {
-                // Keep fallback leaderboard.
+                emitFallback(data);
             }
         });
 
         return data;
+    }
+
+    private void emitFallback(MutableLiveData<List<LeaderboardEntry>> data) {
+        List<LeaderboardEntry> fallback = LeaderboardEntry.getMockLeaderboard();
+        markCurrentUser(fallback);
+        data.setValue(fallback);
     }
 
     public LeaderboardEntry findCurrentUser(List<LeaderboardEntry> entries) {
@@ -78,11 +87,39 @@ public class LeaderboardRepository {
             boolean matchesId = currentUserId != null && currentUserId.equals(safeLower(entry.getUserId()));
             boolean matchesUsername = linkedUsername != null
                     && linkedUsername.equals(safeLower(entry.getUsername()));
-            entry.setCurrentUser(matchesId || matchesUsername);
+            boolean isCurrentUser = matchesId || matchesUsername;
+            entry.setCurrentUser(isCurrentUser);
+            if (isCurrentUser) {
+                applyLocalProfile(entry, currentUserId);
+            }
+        }
+    }
+
+    private void applyLocalProfile(LeaderboardEntry entry, String currentUserId) {
+        User savedProfile = localProfileStore.getSavedProfileForUserId(currentUserId);
+        if (savedProfile == null) {
+            savedProfile = localProfileStore.getSavedProfile();
+        }
+        if (savedProfile == null) {
+            return;
+        }
+
+        if (hasText(savedProfile.getUsername())) {
+            entry.setUsername(savedProfile.getUsername());
+        }
+        if (hasText(savedProfile.getAvatarUrl())) {
+            entry.setAvatarUrl(savedProfile.getAvatarUrl());
+        }
+        if (hasText(savedProfile.getId())) {
+            entry.setUserId(savedProfile.getId());
         }
     }
 
     private String safeLower(String value) {
         return value == null ? null : value.trim().toLowerCase();
+    }
+
+    private boolean hasText(String value) {
+        return value != null && !value.trim().isEmpty();
     }
 }

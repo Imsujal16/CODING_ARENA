@@ -29,7 +29,21 @@
         android:id="@+id/navigation_learn"
         android:name="com.arena.app.ui.learn.LearnFragment"
         android:label="Learn"
-        tools:layout="@layout/fragment_learn" />
+        tools:layout="@layout/fragment_learn">
+        <action
+            android:id="@+id/action_learn_to_roadmapDetail"
+            app:destination="@id/roadmapDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/roadmapDetailFragment"
+        android:name="com.arena.app.ui.learn.RoadmapDetailFragment"
+        android:label="Roadmap Detail"
+        tools:layout="@layout/fragment_roadmap_detail" />
 
     <fragment
         android:id="@+id/navigation_arena"
@@ -37,8 +51,80 @@
         android:label="Arena"
         tools:layout="@layout/fragment_arena">
         <action
+            android:id="@+id/action_arena_to_matchFound"
+            app:destination="@id/matchFoundFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/fade_out" />
+        <action
             android:id="@+id/action_arena_to_battleResult"
             app:destination="@id/battleResultFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_arena_to_topicVoting"
+            app:destination="@id/topicVotingFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_arena_to_mcqBattle"
+            app:destination="@id/mcqBattleFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/matchFoundFragment"
+        android:name="com.arena.app.ui.arena.MatchFoundFragment"
+        android:label="Match Found"
+        tools:layout="@layout/fragment_match_found">
+        <action
+            android:id="@+id/action_matchFound_to_topicVoting"
+            app:destination="@id/topicVotingFragment"
+            app:popUpTo="@id/navigation_arena"
+            app:popUpToInclusive="false"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_matchFound_to_problemSolver"
+            app:destination="@id/problemSolverFragment"
+            app:popUpTo="@id/navigation_arena"
+            app:popUpToInclusive="false"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/topicVotingFragment"
+        android:name="com.arena.app.ui.arena.TopicVotingFragment"
+        android:label="Topic Voting"
+        tools:layout="@layout/fragment_topic_voting">
+        <action
+            android:id="@+id/action_topicVoting_to_mcqBattle"
+            app:destination="@id/mcqBattleFragment"
+            app:popUpTo="@id/navigation_arena"
+            app:popUpToInclusive="false"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_topicVoting_to_problemSolver"
+            app:destination="@id/problemSolverFragment"
+            app:popUpTo="@id/navigation_arena"
+            app:popUpToInclusive="false"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mcqBattleFragment"
+        android:name="com.arena.app.ui.arena.MCQBattleFragment"
+        android:label="MCQ Battle"
+        tools:layout="@layout/fragment_mcq_battle">
+        <action
+            android:id="@+id/action_mcqBattle_to_battleResult"
+            app:destination="@id/battleResultFragment"
+            app:popUpTo="@id/navigation_arena"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/slide_in_up"
             app:exitAnim="@anim/fade_out" />
     </fragment>
@@ -50,6 +136,12 @@
         tools:layout="@layout/fragment_leaderboard" />
 
     <fragment
+        android:id="@+id/publicProfileFragment"
+        android:name="com.arena.app.ui.profile.PublicProfileFragment"
+        android:label="Public Profile"
+        tools:layout="@layout/fragment_public_profile" />
+
+    <fragment
         android:id="@+id/navigation_profile"
         android:name="com.arena.app.ui.profile.ProfileFragment"
         android:label="Profile"
@@ -59,7 +151,15 @@
         android:id="@+id/problemSolverFragment"
         android:name="com.arena.app.ui.solver.ProblemSolverFragment"
         android:label="Solve Problem"
-        tools:layout="@layout/fragment_problem_solver" />
+        tools:layout="@layout/fragment_problem_solver">
+        <action
+            android:id="@+id/action_solver_to_battleResult"
+            app:destination="@id/battleResultFragment"
+            app:popUpTo="@id/navigation_arena"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
 
     <fragment
         android:id="@+id/editProfileFragment"

@@ -2,6 +2,7 @@
 .idea/
 *.apk
 *.jar
+!Arena/gradle/wrapper/gradle-wrapper.jar
 tmp_clerk_aar/
 Arena/local.properties
 Arena/.gradle/

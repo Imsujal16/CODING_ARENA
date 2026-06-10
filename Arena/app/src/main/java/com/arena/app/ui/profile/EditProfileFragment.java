@@ -1,12 +1,21 @@
 package com.arena.app.ui.profile;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -18,8 +27,11 @@ import com.arena.app.R;
 import com.arena.app.auth.ClerkSessionBridge;
 import com.arena.app.models.User;
 import com.arena.app.repository.LocalProfileStore;
+import com.bumptech.glide.Glide;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfileFragment extends Fragment {
 
@@ -28,6 +40,8 @@ public class EditProfileFragment extends Fragment {
     private static final String ARG_USER_HANDLE = "user_handle";
     private static final String ARG_USER_EMAIL = "user_email";
     private static final String ARG_USER_AVATAR = "user_avatar";
+    private static final String ARG_USER_BANNER = "user_banner";
+    private static final String ARG_USER_AVATAR_COLOR = "user_avatar_color";
     private static final String ARG_USER_XP = "user_xp";
     private static final String ARG_USER_STREAK = "user_streak";
     private static final String ARG_USER_POINTS = "user_points";
@@ -50,6 +64,21 @@ public class EditProfileFragment extends Fragment {
     private TextInputEditText inputBirthday;
     private TextInputEditText inputXp;
     private SwitchMaterial switchVerified;
+    private TextView avatarPreview;
+    private TextView previewName;
+    private TextView previewHandle;
+    private CircleImageView avatarImagePreview;
+    private ImageView bannerImagePreview;
+    private View[] colorSwatches;
+    private String selectedAvatarColor = "#1D75D8";
+    private String selectedAvatarUri;
+    private String selectedBannerUri;
+    private ActivityResultLauncher<String[]> avatarImagePicker;
+    private ActivityResultLauncher<String[]> bannerImagePicker;
+
+    private static final String[] AVATAR_COLORS = {
+            "#1D75D8", "#16C7F3", "#A6FF6A", "#8B7CFF", "#F8A13B"
+    };
 
     public static Bundle createArgs(User user) {
         Bundle args = new Bundle();
@@ -62,6 +91,8 @@ public class EditProfileFragment extends Fragment {
         args.putString(ARG_USER_HANDLE, user.getHandle());
         args.putString(ARG_USER_EMAIL, user.getEmail());
         args.putString(ARG_USER_AVATAR, user.getAvatarUrl());
+        args.putString(ARG_USER_BANNER, user.getBannerUrl());
+        args.putString(ARG_USER_AVATAR_COLOR, user.getAvatarColor());
         args.putInt(ARG_USER_XP, user.getXp());
         args.putInt(ARG_USER_STREAK, user.getStreak());
         args.putInt(ARG_USER_POINTS, user.getPoints());
@@ -73,6 +104,27 @@ public class EditProfileFragment extends Fragment {
         args.putInt(ARG_USER_FOLLOWERS, user.getFollowers());
         args.putBoolean(ARG_USER_VERIFIED, user.isVerified());
         return args;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        avatarImagePicker = registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
+            if (uri == null) {
+                return;
+            }
+            persistImagePermission(uri);
+            selectedAvatarUri = uri.toString();
+            bindPreview();
+        });
+        bannerImagePicker = registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
+            if (uri == null) {
+                return;
+            }
+            persistImagePermission(uri);
+            selectedBannerUri = uri.toString();
+            bindPreview();
+        });
     }
 
     @Nullable
@@ -102,9 +154,24 @@ public class EditProfileFragment extends Fragment {
         inputBirthday = view.findViewById(R.id.input_profile_birthday);
         inputXp = view.findViewById(R.id.input_profile_xp);
         switchVerified = view.findViewById(R.id.switch_profile_verified);
+        avatarPreview = view.findViewById(R.id.text_edit_avatar_initial);
+        previewName = view.findViewById(R.id.text_edit_preview_name);
+        previewHandle = view.findViewById(R.id.text_edit_preview_handle);
+        avatarImagePreview = view.findViewById(R.id.img_edit_avatar_preview);
+        bannerImagePreview = view.findViewById(R.id.img_edit_banner_preview);
+        colorSwatches = new View[] {
+                view.findViewById(R.id.swatch_green),
+                view.findViewById(R.id.swatch_purple),
+                view.findViewById(R.id.swatch_orange),
+                view.findViewById(R.id.swatch_blue),
+                view.findViewById(R.id.swatch_red)
+        };
     }
 
     private void bindProfile(User user) {
+        selectedAvatarColor = readTextOrFallback(user.getAvatarColor(), "#1D75D8");
+        selectedAvatarUri = user.getAvatarUrl();
+        selectedBannerUri = user.getBannerUrl();
         setText(inputName, user.getUsername());
         setText(inputHandle, user.getHandle());
         setText(inputBio, user.getBio());
@@ -113,6 +180,8 @@ public class EditProfileFragment extends Fragment {
         setText(inputBirthday, user.getBirthday());
         setText(inputXp, String.valueOf(user.getXp()));
         switchVerified.setChecked(user.isVerified());
+        bindPreview();
+        bindSwatches();
     }
 
     private void setupActions(View view) {
@@ -122,6 +191,30 @@ public class EditProfileFragment extends Fragment {
                 Navigation.findNavController(v).navigateUp());
         view.findViewById(R.id.btn_save_profile).setOnClickListener(v -> saveProfile());
         view.findViewById(R.id.btn_logout_edit_profile).setOnClickListener(v -> showSignOutDialog());
+        view.findViewById(R.id.btn_change_avatar).setOnClickListener(v ->
+                avatarImagePicker.launch(new String[]{"image/*"}));
+        view.findViewById(R.id.btn_change_banner).setOnClickListener(v ->
+                bannerImagePicker.launch(new String[]{"image/*"}));
+        inputName.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                bindPreview();
+            }
+        });
+        inputHandle.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                bindPreview();
+            }
+        });
+        for (int i = 0; i < colorSwatches.length; i++) {
+            final int index = i;
+            colorSwatches[i].setOnClickListener(v -> {
+                selectedAvatarColor = AVATAR_COLORS[index];
+                bindPreview();
+                bindSwatches();
+            });
+        }
     }
 
     private void saveProfile() {
@@ -136,7 +229,9 @@ public class EditProfileFragment extends Fragment {
 
         User updated = new User();
         updated.setId(baseProfile.getId());
-        updated.setAvatarUrl(baseProfile.getAvatarUrl());
+        updated.setAvatarUrl(selectedAvatarUri);
+        updated.setBannerUrl(selectedBannerUri);
+        updated.setAvatarColor(selectedAvatarColor);
         updated.setUsername(username);
         updated.setHandle(normalizeHandle(readText(inputHandle), username));
         updated.setEmail(baseProfile.getEmail());
@@ -167,6 +262,8 @@ public class EditProfileFragment extends Fragment {
         user.setHandle(readTextOrFallback(args.getString(ARG_USER_HANDLE), fallback.getHandle()));
         user.setEmail(readTextOrFallback(args.getString(ARG_USER_EMAIL), fallback.getEmail()));
         user.setAvatarUrl(readTextOrFallback(args.getString(ARG_USER_AVATAR), fallback.getAvatarUrl()));
+        user.setBannerUrl(readTextOrFallback(args.getString(ARG_USER_BANNER), fallback.getBannerUrl()));
+        user.setAvatarColor(readTextOrFallback(args.getString(ARG_USER_AVATAR_COLOR), fallback.getAvatarColor()));
         user.setXp(args.getInt(ARG_USER_XP, fallback.getXp()));
         user.setStreak(args.getInt(ARG_USER_STREAK, fallback.getStreak()));
         user.setPoints(args.getInt(ARG_USER_POINTS, fallback.getPoints()));
@@ -178,6 +275,79 @@ public class EditProfileFragment extends Fragment {
         user.setFollowers(args.getInt(ARG_USER_FOLLOWERS, fallback.getFollowers()));
         user.setVerified(args.getBoolean(ARG_USER_VERIFIED, fallback.isVerified()));
         return user;
+    }
+
+    private void bindPreview() {
+        String username = readTextOrFallback(inputName, "Coder");
+        String handle = normalizeHandle(readText(inputHandle), username);
+
+        avatarPreview.setText(String.valueOf(username.charAt(0)).toUpperCase());
+        avatarPreview.setBackground(makeCircle(selectedAvatarColor, 0, 0));
+        previewName.setText(username);
+        previewHandle.setText(handle);
+        bindAvatarImagePreview();
+        bindBannerImagePreview();
+    }
+
+    private void bindAvatarImagePreview() {
+        if (hasText(selectedAvatarUri)) {
+            avatarPreview.setVisibility(View.GONE);
+            Glide.with(this)
+                    .load(Uri.parse(selectedAvatarUri))
+                    .centerCrop()
+                    .into(avatarImagePreview);
+            return;
+        }
+
+        avatarImagePreview.setImageDrawable(null);
+        avatarImagePreview.setCircleBackgroundColor(parseColor(selectedAvatarColor, Color.parseColor("#1D75D8")));
+        avatarPreview.setVisibility(View.VISIBLE);
+    }
+
+    private void bindBannerImagePreview() {
+        if (hasText(selectedBannerUri)) {
+            Glide.with(this)
+                    .load(Uri.parse(selectedBannerUri))
+                    .centerCrop()
+                    .into(bannerImagePreview);
+            return;
+        }
+
+        bannerImagePreview.setImageDrawable(null);
+        bannerImagePreview.setBackgroundColor(parseColor(selectedAvatarColor, Color.parseColor("#1D75D8")));
+    }
+
+    private void bindSwatches() {
+        for (int i = 0; i < colorSwatches.length; i++) {
+            boolean selected = AVATAR_COLORS[i].equalsIgnoreCase(selectedAvatarColor);
+            colorSwatches[i].setBackground(makeCircle(
+                    AVATAR_COLORS[i],
+                    selected ? Color.parseColor("#171A1F") : Color.parseColor("#DDE2E8"),
+                    selected ? 4 : 1
+            ));
+            colorSwatches[i].setSelected(selected);
+        }
+    }
+
+    private GradientDrawable makeCircle(String fillColor, int strokeColor, int strokeWidthDp) {
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.OVAL);
+        drawable.setColor(parseColor(fillColor, Color.parseColor("#1D75D8")));
+        if (strokeWidthDp > 0) {
+            drawable.setStroke(dp(strokeWidthDp), strokeColor);
+        }
+        return drawable;
+    }
+
+    private void persistImagePermission(Uri uri) {
+        try {
+            requireContext().getContentResolver().takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+            );
+        } catch (SecurityException ignored) {
+            // Some providers grant a regular read URI instead of a persistable one.
+        }
     }
 
     private void showSignOutDialog() {
@@ -215,6 +385,21 @@ public class EditProfileFragment extends Fragment {
         return hasText(value) ? value.trim() : fallback;
     }
 
+    private int parseColor(String value, int fallback) {
+        if (!hasText(value)) {
+            return fallback;
+        }
+        try {
+            return Color.parseColor(value);
+        } catch (IllegalArgumentException ignored) {
+            return fallback;
+        }
+    }
+
+    private int dp(int value) {
+        return Math.round(value * getResources().getDisplayMetrics().density);
+    }
+
     private boolean hasText(String value) {
         return value != null && !value.trim().isEmpty();
     }
@@ -234,5 +419,13 @@ public class EditProfileFragment extends Fragment {
     private String normalizeHandle(String handle, String username) {
         String value = hasText(handle) ? handle.trim() : username.trim().replace(" ", "").toLowerCase();
         return value.startsWith("@") ? value : "@" + value;
+    }
+
+    private abstract static class SimpleTextWatcher implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
     }
 }

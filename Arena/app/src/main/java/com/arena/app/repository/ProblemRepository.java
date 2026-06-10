@@ -15,6 +15,7 @@ import com.arena.app.network.ApiClient;
 import com.arena.app.network.ApiService;
 import com.arena.app.utils.ClerkAuthHelper;
 import com.arena.app.utils.Constants;
+import com.arena.app.utils.LocalProgressStore;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -44,6 +45,7 @@ public class ProblemRepository {
     private final Context appContext;
     private final ApiService apiService;
     private final ClerkAuthHelper authHelper;
+    private final LocalProgressStore localProgressStore;
     private final ExecutorService executor;
     private final Gson gson;
 
@@ -53,6 +55,7 @@ public class ProblemRepository {
         appContext = context.getApplicationContext();
         apiService = ApiClient.getInstance(appContext).getApiService();
         authHelper = new ClerkAuthHelper(appContext);
+        localProgressStore = new LocalProgressStore(appContext);
         executor = Executors.newSingleThreadExecutor();
         gson = new Gson();
     }
@@ -118,13 +121,16 @@ public class ProblemRepository {
                 return;
             }
 
-            liveData.postValue(mapper.apply(problems, SheetProgressSnapshot.empty()));
+            liveData.postValue(mapper.apply(problems, getLocalProgressSnapshot()));
 
             apiService.getStriverProgress().enqueue(new Callback<SheetProgressResponse>() {
                 @Override
                 public void onResponse(Call<SheetProgressResponse> call, Response<SheetProgressResponse> response) {
                     if (response.isSuccessful() && response.body() != null) {
-                        liveData.postValue(mapper.apply(problems, resolveCurrentUserProgress(response.body())));
+                        liveData.postValue(mapper.apply(problems, mergeProgress(
+                                getLocalProgressSnapshot(),
+                                resolveCurrentUserProgress(response.body())
+                        )));
                     }
                 }
 
@@ -215,6 +221,25 @@ public class ProblemRepository {
         }
 
         return SheetProgressSnapshot.empty();
+    }
+
+    private SheetProgressSnapshot getLocalProgressSnapshot() {
+        return new SheetProgressSnapshot(localProgressStore.getSolvedSlugs(), Collections.emptySet());
+    }
+
+    private SheetProgressSnapshot mergeProgress(SheetProgressSnapshot local,
+                                                SheetProgressSnapshot remote) {
+        Set<String> completed = new HashSet<>();
+        Set<String> inProgress = new HashSet<>();
+        if (local != null) {
+            completed.addAll(local.completed);
+            inProgress.addAll(local.inProgress);
+        }
+        if (remote != null) {
+            completed.addAll(remote.completed);
+            inProgress.addAll(remote.inProgress);
+        }
+        return new SheetProgressSnapshot(completed, inProgress);
     }
 
     private Problem mapDailyChallenge(DailyChallengeResponse response) {

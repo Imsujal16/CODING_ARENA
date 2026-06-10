@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/spacing_xl">
+
+        <ImageView
+            android:id="@+id/img_public_banner"
+            android:layout_width="0dp"
+            android:layout_height="214dp"
+            android:background="@drawable/bg_profile_banner_default"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_public_profile_back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:background="@drawable/bg_profile_icon_button"
+            android:contentDescription="@string/cd_back"
+            android:padding="10dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/text_white" />
+
+        <TextView
+            android:id="@+id/text_public_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:shadowColor="@color/text_white"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="0"
+            android:text="MASTER"
+            android:textColor="#1D1E22"
+            android:textSize="@dimen/text_title"
+            app:layout_constraintBottom_toBottomOf="@id/img_public_banner"
+            app:layout_constraintEnd_toEndOf="@id/img_public_banner"
+            app:layout_constraintStart_toStartOf="@id/img_public_banner"
+            app:layout_constraintTop_toTopOf="@id/img_public_banner" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_public_avatar"
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:src="@drawable/bg_avatar_circle"
+            app:civ_border_color="@color/background_dark"
+            app:civ_border_width="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/img_public_banner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_public_banner" />
+
+        <TextView
+            android:id="@+id/text_public_avatar_initial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="A"
+            android:textColor="@color/text_white"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@id/img_public_avatar"
+            app:layout_constraintEnd_toEndOf="@id/img_public_avatar"
+            app:layout_constraintStart_toStartOf="@id/img_public_avatar"
+            app:layout_constraintTop_toTopOf="@id/img_public_avatar" />
+
+        <TextView
+            android:id="@+id/text_public_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_bold"
+            android:maxLines="1"
+            android:text="Player"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_headline_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_public_avatar" />
+
+        <TextView
+            android:id="@+id/text_public_handle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@player"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_body_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_public_name" />
+
+        <TextView
+            android:id="@+id/text_public_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Logical MCQ competitor"
+            android:textColor="#B7C0CC"
+            android:textSize="@dimen/text_body_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_public_handle" />
+
+        <LinearLayout
+            android:id="@+id/public_profile_stats"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_public_subtitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_public_xp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_auth_panel"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="0 XP"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_title" />
+
+                <TextView
+                    android:id="@+id/text_public_streak"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_sm"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_auth_panel"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="0 STREAK"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_title" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_public_solved"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_auth_panel"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="0 SOLVED"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_title" />
+
+                <TextView
+                    android:id="@+id/text_public_league"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_sm"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_auth_panel"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="GLOBAL"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="@dimen/text_title" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_public_bio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:background="@drawable/bg_auth_panel"
+            android:fontFamily="@font/poppins_regular"
+            android:lineSpacingMultiplier="1.18"
+            android:padding="@dimen/spacing_md"
+            android:text="This player is climbing the Arena leaderboard."
+            android:textColor="#B7C0CC"
+            android:textSize="@dimen/text_body_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/public_profile_stats" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

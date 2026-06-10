@@ -1,0 +1,98 @@
+{
+  "Arrays": [
+    {
+      "id": "arr1",
+      "question": "What is the time complexity of accessing an element in an array by its index?",
+      "options": ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+      "answer": "O(1)"
+    },
+    {
+      "id": "arr2",
+      "question": "Which of the following sorting algorithms is typically the fastest in practice for small arrays?",
+      "options": ["Merge Sort", "Quick Sort", "Insertion Sort", "Heap Sort"],
+      "answer": "Insertion Sort"
+    },
+    {
+      "id": "arr3",
+      "question": "In a dynamically sized array (like std::vector or ArrayList), what is the typical amortized time complexity of appending an element?",
+      "options": ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+      "answer": "O(1)"
+    },
+    {
+      "id": "arr4",
+      "question": "If you reverse an array of size n, how many swaps are required?",
+      "options": ["n", "n/2", "n-1", "log n"],
+      "answer": "n/2"
+    },
+    {
+      "id": "arr5",
+      "question": "Which algorithm is best to find the maximum subarray sum in O(n) time?",
+      "options": ["Kadane's Algorithm", "Dijkstra's Algorithm", "Floyd-Warshall", "Bellman-Ford"],
+      "answer": "Kadane's Algorithm"
+    }
+  ],
+  "Strings": [
+    {
+      "id": "str1",
+      "question": "Which algorithm is commonly used for efficient string matching?",
+      "options": ["KMP Algorithm", "Prim's Algorithm", "Kruskal's Algorithm", "Floyd's Cycle Detection"],
+      "answer": "KMP Algorithm"
+    },
+    {
+      "id": "str2",
+      "question": "In Java, why are String objects considered immutable?",
+      "options": ["To save memory", "For security and thread-safety", "To make them faster", "Because of garbage collection"],
+      "answer": "For security and thread-safety"
+    },
+    {
+      "id": "str3",
+      "question": "What data structure is highly optimized for storing a dictionary of words for prefix searches?",
+      "options": ["Hash Map", "Binary Search Tree", "Trie", "Priority Queue"],
+      "answer": "Trie"
+    },
+    {
+      "id": "str4",
+      "question": "What is the time complexity to concatenate two strings of lengths M and N?",
+      "options": ["O(1)", "O(M)", "O(N)", "O(M + N)"],
+      "answer": "O(M + N)"
+    },
+    {
+      "id": "str5",
+      "question": "Which encoding standard is most widely used for characters on the modern internet?",
+      "options": ["ASCII", "UTF-8", "UTF-16", "ISO-8859-1"],
+      "answer": "UTF-8"
+    }
+  ],
+  "Dynamic Programming": [
+    {
+      "id": "dp1",
+      "question": "What are the two main properties a problem must have to be solvable using Dynamic Programming?",
+      "options": ["Greedy Choice & Overlapping Subproblems", "Optimal Substructure & Overlapping Subproblems", "Divide & Conquer", "Recursion & Memoization"],
+      "answer": "Optimal Substructure & Overlapping Subproblems"
+    },
+    {
+      "id": "dp2",
+      "question": "Which DP approach builds the solution from the base cases up?",
+      "options": ["Top-Down (Memoization)", "Bottom-Up (Tabulation)", "Backtracking", "Branch and Bound"],
+      "answer": "Bottom-Up (Tabulation)"
+    },
+    {
+      "id": "dp3",
+      "question": "What is the time complexity of the classic DP solution for the 0/1 Knapsack problem (W = capacity, n = items)?",
+      "options": ["O(2^n)", "O(n log n)", "O(n * W)", "O(W^2)"],
+      "answer": "O(n * W)"
+    },
+    {
+      "id": "dp4",
+      "question": "The Longest Common Subsequence (LCS) problem for two strings of length M and N takes what space complexity using standard 2D tabulation?",
+      "options": ["O(M + N)", "O(1)", "O(M * N)", "O(log(M+N))"],
+      "answer": "O(M * N)"
+    },
+    {
+      "id": "dp5",
+      "question": "In the Fibonacci sequence computed via DP with memoization, how many times is fib(4) computed if we call fib(6)?",
+      "options": ["1", "2", "3", "4"],
+      "answer": "1"
+    }
+  ]
+}

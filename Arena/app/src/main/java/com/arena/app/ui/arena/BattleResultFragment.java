@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.arena.app.R;
@@ -30,9 +31,20 @@ public class BattleResultFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        BattleResult result = BattleResult.getMockVictory();
+        // Read REAL result passed from ArenaFragment / BattleViewModel via navigation args.
+        // Fall back to mock only if no args at all (e.g. direct navigation in dev).
+        Bundle args = getArguments();
+        BattleResult result = (args != null && args.containsKey("won"))
+                ? BattleResult.fromBundle(args)
+                : BattleResult.getMockVictory();
+
         bindResult(view, result);
         animateIn(view);
+
+        // Reset battle session so the ViewModel is clean for the next battle
+        BattleViewModel battleVm =
+                new ViewModelProvider(requireActivity()).get(BattleViewModel.class);
+        battleVm.reset();
 
         MaterialButton btnBack = view.findViewById(R.id.btn_back_to_arena);
         btnBack.setOnClickListener(v ->
@@ -40,11 +52,11 @@ public class BattleResultFragment extends Fragment {
     }
 
     private void bindResult(View view, BattleResult result) {
-        TextView titleText = view.findViewById(R.id.text_result_title);
-        TextView timeText = view.findViewById(R.id.text_stat_time);
+        TextView titleText    = view.findViewById(R.id.text_result_title);
+        TextView timeText     = view.findViewById(R.id.text_stat_time);
         TextView accuracyText = view.findViewById(R.id.text_stat_accuracy);
-        TextView xpText = view.findViewById(R.id.text_stat_xp);
-        TextView coinsText = view.findViewById(R.id.text_stat_coins);
+        TextView xpText       = view.findViewById(R.id.text_stat_xp);
+        TextView coinsText    = view.findViewById(R.id.text_stat_coins);
 
         if (result.isWon()) {
             titleText.setText(R.string.victory);
@@ -58,6 +70,21 @@ public class BattleResultFragment extends Fragment {
         accuracyText.setText(result.getFormattedAccuracy());
         xpText.setText(result.getFormattedXp());
         coinsText.setText(result.getFormattedCoins());
+
+        // Show opponent name if the layout has a TextView for it
+        TextView opponentView = view.findViewById(R.id.text_opponent_name);
+        if (opponentView != null && result.getOpponentName() != null) {
+            opponentView.setText("vs " + result.getOpponentName());
+            opponentView.setVisibility(View.VISIBLE);
+        }
+
+        // Show problem title if the layout has it
+        TextView problemView = view.findViewById(R.id.text_problem_name);
+        if (problemView != null && result.getProblemTitle() != null
+                && !result.getProblemTitle().isEmpty()) {
+            problemView.setText(result.getProblemTitle());
+            problemView.setVisibility(View.VISIBLE);
+        }
     }
 
     private void animateIn(View root) {
@@ -71,10 +98,10 @@ public class BattleResultFragment extends Fragment {
                 .setInterpolator(new OvershootInterpolator(0.6f))
                 .start();
 
-        // Animate stats cards sequentially
         int[] statIds = {R.id.stat_time, R.id.stat_accuracy, R.id.stat_xp, R.id.stat_coins};
         for (int i = 0; i < statIds.length; i++) {
             View stat = root.findViewById(statIds[i]);
+            if (stat == null) continue;
             stat.setScaleX(0f);
             stat.setScaleY(0f);
             stat.setAlpha(0f);

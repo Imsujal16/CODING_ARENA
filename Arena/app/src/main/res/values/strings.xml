@@ -188,6 +188,14 @@
 
     <!-- Edit Profile -->
     <string name="edit_profile_subtitle">Update the details shown across your Arena profile.</string>
+    <string name="profile_accent_label">Profile accent</string>
+    <string name="profile_accent_green">Blue profile accent</string>
+    <string name="profile_accent_purple">Cyan profile accent</string>
+    <string name="profile_accent_orange">Neon green profile accent</string>
+    <string name="profile_accent_blue">Purple profile accent</string>
+    <string name="profile_accent_red">Orange profile accent</string>
+    <string name="change_profile_photo">Change photo</string>
+    <string name="change_banner">Change banner</string>
     <string name="save_changes">Save Changes</string>
     <string name="profile_updated">Profile updated.</string>
     <string name="profile_username_required">Enter a username to save your profile.</string>

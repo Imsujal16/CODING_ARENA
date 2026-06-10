@@ -203,12 +203,12 @@ public class ClerkAuthActivity extends AppCompatActivity {
     }
 
     private void applyTabStyle(MaterialButton button, boolean active) {
-        int textColor = ContextCompat.getColor(this, active ? R.color.text_white : R.color.primary_blue);
+        int textColor = ContextCompat.getColor(this, active ? R.color.text_white : R.color.text_secondary);
 
-        button.setBackgroundTintList(ContextCompat.getColorStateList(this, active ? R.color.primary_blue : R.color.card_background));
+        button.setBackgroundTintList(ContextCompat.getColorStateList(this, active ? R.color.primary_blue : R.color.background_dark));
         button.setTextColor(textColor);
-        button.setStrokeColor(ContextCompat.getColorStateList(this, R.color.primary_blue));
-        button.setStrokeWidth(active ? 0 : 2);
+        button.setStrokeColor(ContextCompat.getColorStateList(this, active ? R.color.primary_blue : R.color.divider));
+        button.setStrokeWidth(active ? 0 : 1);
         button.setRippleColor(ContextCompat.getColorStateList(this, R.color.primary_blue_light));
     }
 
@@ -259,7 +259,7 @@ public class ClerkAuthActivity extends AppCompatActivity {
             return;
         }
 
-        showError(getFailureMessage((ClerkResult.Failure<ClerkErrorResponse>) result));
+        showError(resolveGoogleFailureMessage((ClerkResult.Failure<ClerkErrorResponse>) result));
     }
 
     private void startGoogleAuthentication() {
@@ -267,10 +267,15 @@ public class ClerkAuthActivity extends AppCompatActivity {
         clearSignUpProfileDraft();
         ClerkSessionBridge.ensureInitialized(this);
         setLoading(true);
-        executeSuspendCall(
-                continuation -> SignIn.Companion.authenticateWithGoogle(continuation),
-                this::handleGoogleAuthenticationResult
-        );
+        try {
+            executeSuspendCall(
+                    continuation -> SignIn.Companion.authenticateWithGoogle(continuation),
+                    this::handleGoogleAuthenticationResult
+            );
+        } catch (Exception e) {
+            setLoading(false);
+            showError("Google Sign-In is not configured yet.\nPlease use Email & Password instead.");
+        }
     }
 
     private void handleGoogleAuthenticationResult(ClerkResult<OAuthResult, ClerkErrorResponse> result) {
@@ -688,6 +693,7 @@ public class ClerkAuthActivity extends AppCompatActivity {
         profile.setUsername(fullName.isEmpty() ? username : fullName);
         profile.setHandle(username.isEmpty() ? "" : "@" + username);
         profile.setEmail(safeText(signUpEmailInput.getText()));
+        profile.setAvatarColor("#1D75D8");
         profile.setBio(safeText(signUpBioInput.getText()));
         profile.setLocation(safeText(signUpLocationInput.getText()));
         profile.setJoinedDate(buildJoinedDate());
@@ -790,6 +796,15 @@ public class ClerkAuthActivity extends AppCompatActivity {
         }
 
         return getString(R.string.auth_generic_error);
+    }
+
+    private String resolveGoogleFailureMessage(ClerkResult.Failure<ClerkErrorResponse> failure) {
+        String message = getFailureMessage(failure);
+        String lower = message == null ? "" : message.toLowerCase(Locale.US);
+        if (lower.contains("no credential") || lower.contains("no credentials")) {
+            return "No Google account was available on this device.\nSign into a Google account in device settings, use a Play Store emulator image, then try again.";
+        }
+        return message;
     }
 
     private String resolveThrowableMessage(RuntimeException exception) {

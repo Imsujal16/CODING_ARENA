@@ -15,17 +15,24 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.arena.app.R;
+import com.arena.app.models.BattleResult;
 import com.arena.app.models.CodeLanguage;
 import com.arena.app.models.CompilerSubmissionResultResponse;
 import com.arena.app.models.Problem;
 import com.arena.app.repository.CompilerRepository;
+import com.arena.app.ui.arena.BattleViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class ProblemSolverFragment extends Fragment {
+
+    private static final String ARG_IS_BATTLE  = "isBattleMode";
+    private static final String ARG_OPPONENT   = "opponentName";
+    private boolean isBattleMode = false;
 
     private static final String ARG_PROBLEM_ID = "problem_id";
     private static final String ARG_PROBLEM_NUMBER = "problem_number";
@@ -80,16 +87,44 @@ public class ProblemSolverFragment extends Fragment {
         compilerRepository = new CompilerRepository();
         currentProblem = readProblemArgs();
 
+        Bundle args = getArguments();
+        if (args != null) isBattleMode = args.getBoolean(ARG_IS_BATTLE, false);
+
         spinnerLanguage = view.findViewById(R.id.spinner_language);
-        inputCode = view.findViewById(R.id.input_code);
-        inputStdin = view.findViewById(R.id.input_stdin);
-        textStatus = view.findViewById(R.id.text_solver_status);
-        textOutput = view.findViewById(R.id.text_solver_output);
-        btnRunCode = view.findViewById(R.id.btn_run_code);
+        inputCode       = view.findViewById(R.id.input_code);
+        inputStdin      = view.findViewById(R.id.input_stdin);
+        textStatus      = view.findViewById(R.id.text_solver_status);
+        textOutput      = view.findViewById(R.id.text_solver_output);
+        btnRunCode      = view.findViewById(R.id.btn_run_code);
 
         bindProblem(view);
         setupLanguagePicker();
         setupActions(view);
+
+        if (isBattleMode) {
+            observeBattleEnd();
+            // Show battle banner
+            View battleBanner = view.findViewById(R.id.battle_banner);
+            if (battleBanner != null) {
+                battleBanner.setVisibility(View.VISIBLE);
+                String opponent = (args != null) ? args.getString(ARG_OPPONENT, "Opponent") : "Opponent";
+                TextView bannerText = view.findViewById(R.id.text_battle_banner);
+                if (bannerText != null) bannerText.setText("⚔\uFE0F Battle vs " + opponent + " — Solve on LeetCode to win!");
+            }
+        }
+    }
+
+    /** Listen for battle:end from the activity-scoped BattleViewModel. */
+    private void observeBattleEnd() {
+        BattleViewModel battleVm =
+                new ViewModelProvider(requireActivity()).get(BattleViewModel.class);
+        battleVm.getResult().observe(getViewLifecycleOwner(), result -> {
+            if (result == null) return;
+            if (battleVm.getStatus().getValue() == BattleViewModel.BattleStatus.ENDED) {
+                Navigation.findNavController(requireView())
+                        .navigate(R.id.action_solver_to_battleResult, result.toBundle());
+            }
+        });
     }
 
     private void bindProblem(View view) {

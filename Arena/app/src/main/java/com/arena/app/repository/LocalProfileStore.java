@@ -30,29 +30,46 @@ public class LocalProfileStore {
             return;
         }
 
-        if (!hasText(user.getId())) {
-            String currentUserId = getCurrentUserId();
-            if (hasText(currentUserId)) {
-                user.setId(currentUserId);
-            }
+        String profileId = resolveProfileStorageId(user);
+        if (!hasText(profileId)) {
+            return;
         }
 
+        user.setId(profileId);
         prefs.edit()
-                .putString(Constants.PREF_PROFILE_OVERRIDE, gson.toJson(user))
+                .putString(getProfileOverrideKey(profileId), gson.toJson(user))
                 .apply();
     }
 
     public User getSavedProfile() {
-        String json = prefs.getString(Constants.PREF_PROFILE_OVERRIDE, null);
-        if (json == null || json.trim().isEmpty()) {
+        String currentUserId = getCurrentUserId();
+        User savedProfile = getSavedProfileForUserId(currentUserId);
+        if (savedProfile != null) {
+            return savedProfile;
+        }
+
+        User legacyProfile = readUser(Constants.PREF_PROFILE_OVERRIDE);
+        if (legacyProfile == null) {
             return null;
         }
 
-        try {
-            return gson.fromJson(json, User.class);
-        } catch (RuntimeException ignored) {
+        if (!hasText(currentUserId)
+                || !hasText(legacyProfile.getId())
+                || currentUserId.equals(legacyProfile.getId())) {
+            if (hasText(currentUserId)) {
+                legacyProfile.setId(currentUserId);
+                saveProfile(legacyProfile);
+            }
+            return legacyProfile;
+        }
+        return null;
+    }
+
+    public User getSavedProfileForUserId(String userId) {
+        if (!hasText(userId)) {
             return null;
         }
+        return readUser(getProfileOverrideKey(userId));
     }
 
     public void saveGuestProfile(User user) {
@@ -122,8 +139,16 @@ public class LocalProfileStore {
             if (!hasText(effectiveProfile.getAvatarUrl())) {
                 effectiveProfile.setAvatarUrl(resolvedBase.getAvatarUrl());
             }
+            if (!hasText(effectiveProfile.getBannerUrl())) {
+                effectiveProfile.setBannerUrl(resolvedBase.getBannerUrl());
+            }
             if (!hasText(effectiveProfile.getEmail())) {
                 effectiveProfile.setEmail(resolvedBase.getEmail());
+            }
+            if (!hasText(effectiveProfile.getAvatarColor())) {
+                effectiveProfile.setAvatarColor(hasText(resolvedBase.getAvatarColor())
+                        ? resolvedBase.getAvatarColor()
+                        : "#1D75D8");
             }
 
             // These are synced/live values and should not be overridden by local edits.
@@ -152,6 +177,21 @@ public class LocalProfileStore {
 
     private String getCurrentUserId() {
         return prefs.getString(Constants.PREF_USER_ID, null);
+    }
+
+    private String resolveProfileStorageId(User user) {
+        String currentUserId = getCurrentUserId();
+        if (hasText(currentUserId)) {
+            return currentUserId;
+        }
+        if (user != null && hasText(user.getId())) {
+            return user.getId();
+        }
+        return null;
+    }
+
+    private String getProfileOverrideKey(String userId) {
+        return Constants.PREF_PROFILE_OVERRIDE + "_" + userId;
     }
 
     private boolean isGuestModeEnabled() {

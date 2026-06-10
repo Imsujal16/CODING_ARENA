@@ -17,11 +17,20 @@ import java.util.List;
 
 public class RecentActivityAdapter extends RecyclerView.Adapter<RecentActivityAdapter.ViewHolder> {
 
+    public interface OnActivityClickListener {
+        void onActivityClicked(Problem problem);
+    }
+
     private List<Problem> items = new ArrayList<>();
+    private OnActivityClickListener listener;
 
     public void setItems(List<Problem> items) {
         this.items = items;
         notifyDataSetChanged();
+    }
+
+    public void setListener(OnActivityClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,7 +43,7 @@ public class RecentActivityAdapter extends RecyclerView.Adapter<RecentActivityAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(items.get(position));
+        holder.bind(items.get(position), listener);
     }
 
     @Override
@@ -52,10 +61,15 @@ public class RecentActivityAdapter extends RecyclerView.Adapter<RecentActivityAd
             iconCheck = itemView.findViewById(R.id.icon_solved_check);
         }
 
-        void bind(Problem item) {
+        void bind(Problem item, OnActivityClickListener listener) {
             textTitle.setText(item.getDisplayTitle());
             chipDifficulty.setText(item.getDifficulty().toUpperCase());
             textTimeAgo.setText(item.getSolvedTimeAgo());
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onActivityClicked(item);
+                }
+            });
 
             iconCheck.setVisibility(item.isSolved() ? View.VISIBLE : View.GONE);
 

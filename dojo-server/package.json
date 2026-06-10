@@ -1,0 +1,13 @@
+{
+  "name": "dojo-battle-server",
+  "version": "1.0.0",
+  "description": "Real-time Socket.IO battle server for Arena app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "socket.io": "^4.7.5"
+  }
+}

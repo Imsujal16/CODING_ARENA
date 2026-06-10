@@ -16,11 +16,20 @@ import java.util.List;
 
 public class ContinueLearningAdapter extends RecyclerView.Adapter<ContinueLearningAdapter.ViewHolder> {
 
+    public interface OnContinueLearningClickListener {
+        void onContinueLearningClicked(ContinueLearning item);
+    }
+
     private List<ContinueLearning> items = new ArrayList<>();
+    private OnContinueLearningClickListener listener;
 
     public void setItems(List<ContinueLearning> items) {
         this.items = items;
         notifyDataSetChanged();
+    }
+
+    public void setListener(OnContinueLearningClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,7 +43,7 @@ public class ContinueLearningAdapter extends RecyclerView.Adapter<ContinueLearni
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ContinueLearning item = items.get(position);
-        holder.bind(item);
+        holder.bind(item, listener);
     }
 
     @Override
@@ -56,11 +65,16 @@ public class ContinueLearningAdapter extends RecyclerView.Adapter<ContinueLearni
             textProgress = itemView.findViewById(R.id.text_progress);
         }
 
-        void bind(ContinueLearning item) {
+        void bind(ContinueLearning item, OnContinueLearningClickListener listener) {
             textTitle.setText(item.getTitle());
             textNext.setText("Next: " + item.getNextProblem());
             textTag.setText(item.getTopicTag());
             textProgress.setText(item.getProgressPercent() + "%");
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onContinueLearningClicked(item);
+                }
+            });
         }
     }
 }

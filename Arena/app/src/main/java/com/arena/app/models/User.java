@@ -8,6 +8,8 @@ public class User {
     private String handle;
     private String email;
     private String avatarUrl;
+    private String bannerUrl;
+    private String avatarColor;
     private int level;
     private int xp;
     private String rank;
@@ -30,6 +32,8 @@ public class User {
                 other.handle,
                 other.email,
                 other.avatarUrl,
+                other.bannerUrl,
+                other.avatarColor,
                 other.level,
                 other.xp,
                 other.rank,
@@ -45,7 +49,9 @@ public class User {
         );
     }
 
-    public User(String id, String username, String handle, String email, String avatarUrl, int level,
+    public User(String id, String username, String handle, String email, String avatarUrl,
+                String bannerUrl,
+                String avatarColor, int level,
                 int xp, String rank, int streak, int points, String bio, String location,
                 String joinedDate, String birthday, int following, int followers, boolean verified) {
         this.id = id;
@@ -53,6 +59,8 @@ public class User {
         this.handle = handle;
         this.email = email;
         this.avatarUrl = avatarUrl;
+        this.bannerUrl = bannerUrl;
+        this.avatarColor = avatarColor;
         this.level = level;
         this.xp = xp;
         this.rank = rank;
@@ -70,7 +78,7 @@ public class User {
     // Static mock data
     public static User getMockUser() {
         return new User(
-            "user_001", "Gautam", "@ggupta78", "ggupta78@example.com", null, 24,
+            "user_001", "Gautam", "@ggupta78", "ggupta78@example.com", null, null, "#1D75D8", 24,
             12450, "Platinum", 12, 1200, "Co-Founder - Sevenfold",
             "Delhi, India", "Joined Jan 2026", "Born June 25, 1996",
             50, 50, true
@@ -84,6 +92,8 @@ public class User {
                 "",
                 "",
                 null,
+                null,
+                "#1D75D8",
                 0,
                 0,
                 "",
@@ -110,6 +120,8 @@ public class User {
                 "",
                 "",
                 null,
+                null,
+                "#6C4FD8",
                 0,
                 0,
                 "",
@@ -140,6 +152,12 @@ public class User {
 
     public String getAvatarUrl() { return avatarUrl; }
     public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
+
+    public String getBannerUrl() { return bannerUrl; }
+    public void setBannerUrl(String bannerUrl) { this.bannerUrl = bannerUrl; }
+
+    public String getAvatarColor() { return avatarColor; }
+    public void setAvatarColor(String avatarColor) { this.avatarColor = avatarColor; }
 
     public int getLevel() { return level; }
     public void setLevel(int level) { this.level = level; }

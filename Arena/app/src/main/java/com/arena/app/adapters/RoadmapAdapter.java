@@ -18,11 +18,20 @@ import java.util.List;
 
 public class RoadmapAdapter extends RecyclerView.Adapter<RoadmapAdapter.ViewHolder> {
 
+    public interface OnRoadmapClickListener {
+        void onRoadmapClicked(Roadmap roadmap);
+    }
+
     private List<Roadmap> items = new ArrayList<>();
+    private OnRoadmapClickListener listener;
 
     public void setItems(List<Roadmap> items) {
         this.items = items;
         notifyDataSetChanged();
+    }
+
+    public void setListener(OnRoadmapClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,7 +44,7 @@ public class RoadmapAdapter extends RecyclerView.Adapter<RoadmapAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(items.get(position));
+        holder.bind(items.get(position), listener);
     }
 
     @Override
@@ -56,11 +65,15 @@ public class RoadmapAdapter extends RecyclerView.Adapter<RoadmapAdapter.ViewHold
             progressBar = itemView.findViewById(R.id.progress_roadmap);
         }
 
-        void bind(Roadmap item) {
+        void bind(Roadmap item, OnRoadmapClickListener listener) {
             textTitle.setText(item.getTitle());
             textSubtitle.setText(item.getSubtitle());
             textProgress.setText(item.getProgress() + "%");
             progressBar.setProgress(item.getProgress());
+
+            if (listener != null) {
+                itemView.setOnClickListener(v -> listener.onRoadmapClicked(item));
+            }
 
             if (item.getBadge() != null && !item.getBadge().isEmpty()) {
                 textBadge.setVisibility(View.VISIBLE);

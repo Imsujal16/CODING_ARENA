@@ -39,6 +39,9 @@ public interface ApiService {
     @GET("leetcode/daily")
     Call<DailyChallengeResponse> getDailyChallenge();
 
+    @POST("leetcode/check-solved")
+    Call<Map<String, Object>> checkSolved(@Body Map<String, Object> request);
+
     @GET("sheets/striver/progress")
     Call<SheetProgressResponse> getStriverProgress();
 

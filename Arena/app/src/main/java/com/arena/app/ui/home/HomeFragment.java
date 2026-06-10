@@ -1,10 +1,15 @@
 package com.arena.app.ui.home;
 
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,8 +25,11 @@ import com.arena.app.models.Problem;
 import com.arena.app.models.User;
 import com.arena.app.repository.LocalProfileStore;
 import com.arena.app.ui.solver.ProblemSolverFragment;
+import com.bumptech.glide.Glide;
 
 import java.util.Calendar;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment {
 
@@ -30,6 +38,8 @@ public class HomeFragment extends Fragment {
     private LocalProfileStore localProfileStore;
     private User currentUser;
     private Problem currentProblem;
+    private ShimmerFrameLayout shimmerHome;
+    private boolean shimmerStopped = false;
 
     @Nullable
     @Override
@@ -47,6 +57,12 @@ public class HomeFragment extends Fragment {
         setupRecyclerView(view);
         setupGreeting(view);
         setupActions(view);
+
+        // Start shimmer immediately
+        shimmerHome = view.findViewById(R.id.shimmer_home);
+        shimmerHome.startShimmer();
+        ((TextView) view.findViewById(R.id.text_username)).setText("Loading...");
+
         observeData(view);
     }
 
@@ -78,6 +94,18 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
+        adapter.setListener(item -> {
+            Problem problem = new Problem();
+            problem.setTitle(item.getNextProblem());
+            problem.setTopic(item.getTopicTag());
+            problem.setDifficulty("Medium");
+            problem.setDescription("Continue your " + item.getTitle() + " track.");
+            problem.setXpReward(20);
+            Navigation.findNavController(requireView()).navigate(
+                    R.id.problemSolverFragment,
+                    ProblemSolverFragment.createArgs(problem)
+            );
+        });
     }
 
     private void setupActions(View view) {
@@ -91,6 +119,22 @@ public class HomeFragment extends Fragment {
                     ProblemSolverFragment.createArgs(currentProblem)
             );
         });
+        view.findViewById(R.id.text_view_all).setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.navigation_learn));
+        view.findViewById(R.id.img_avatar).setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.navigation_profile));
+        view.findViewById(R.id.card_stats).setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.navigation_profile));
+        view.findViewById(R.id.card_daily_challenge).setOnClickListener(v -> {
+            if (currentProblem == null) {
+                Toast.makeText(requireContext(), "Loading challenge...", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Navigation.findNavController(v).navigate(
+                    R.id.problemSolverFragment,
+                    ProblemSolverFragment.createArgs(currentProblem)
+            );
+        });
     }
 
     private void observeData(View view) {
@@ -98,6 +142,7 @@ public class HomeFragment extends Fragment {
             if (user != null) {
                 currentUser = user;
                 bindUser(view, localProfileStore.getEffectiveProfile(user));
+                stopShimmer(view);
             }
         });
 
@@ -133,8 +178,35 @@ public class HomeFragment extends Fragment {
 
         TextView avatarInitial = view.findViewById(R.id.text_avatar_initial);
         if (user.getUsername() != null && !user.getUsername().isEmpty()) {
-            avatarInitial.setText(String.valueOf(user.getUsername().charAt(0)));
+            avatarInitial.setText(String.valueOf(user.getUsername().charAt(0)).toUpperCase());
         }
+        CircleImageView avatar = view.findViewById(R.id.img_avatar);
+        if (hasText(user.getAvatarUrl())) {
+            avatarInitial.setVisibility(View.GONE);
+            Glide.with(this)
+                    .load(Uri.parse(user.getAvatarUrl()))
+                    .centerCrop()
+                    .into(avatar);
+        } else {
+            avatar.setImageDrawable(null);
+            avatar.setCircleBackgroundColor(parseColor(user.getAvatarColor(), Color.parseColor("#1D75D8")));
+            avatarInitial.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private int parseColor(String value, int fallback) {
+        if (value == null || value.trim().isEmpty()) {
+            return fallback;
+        }
+        try {
+            return Color.parseColor(value);
+        } catch (IllegalArgumentException ignored) {
+            return fallback;
+        }
+    }
+
+    private boolean hasText(String value) {
+        return value != null && !value.trim().isEmpty();
     }
 
     private void setDifficultyChipStyle(TextView chip, String difficulty) {
@@ -156,5 +228,20 @@ public class HomeFragment extends Fragment {
                 chip.setTextColor(getResources().getColor(R.color.difficulty_medium, null));
                 break;
         }
+    }
+
+    private void stopShimmer(View root) {
+        if (shimmerStopped || shimmerHome == null) return;
+        shimmerStopped = true;
+        shimmerHome.stopShimmer();
+        shimmerHome.animate().alpha(0f).setDuration(300).withEndAction(() -> {
+            shimmerHome.setVisibility(View.GONE);
+            // Fade in the real content
+            View cardStats = root.findViewById(R.id.card_stats);
+            if (cardStats != null) {
+                cardStats.setAlpha(0f);
+                cardStats.animate().alpha(1f).setDuration(400).start();
+            }
+        }).start();
     }
 }

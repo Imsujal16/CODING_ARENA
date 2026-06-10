@@ -31,7 +31,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="top|center_horizontal"
                 android:src="@drawable/bg_avatar_circle"
-                app:civ_border_color="@color/primary_blue"
+                app:civ_border_color="@color/primary_accent"
                 app:civ_border_width="3dp" />
 
             <TextView
@@ -243,6 +243,25 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- Hidden: shown programmatically when opponent/problem data is available -->
+        <TextView
+            android:id="@+id/text_opponent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_body_small"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/text_problem_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_body_small"
+            android:visibility="gone" />
+
         <!-- Back to Arena button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_back_to_arena"
@@ -252,9 +271,9 @@
             android:fontFamily="@font/poppins_bold"
             android:text="@string/back_to_arena"
             android:textAllCaps="false"
-            android:textColor="@color/text_white"
+            android:textColor="#000000"
             android:textSize="@dimen/text_body"
-            app:backgroundTint="@color/primary_blue"
+            app:backgroundTint="@color/primary_accent"
             app:cornerRadius="@dimen/corner_button" />
 
     </LinearLayout>

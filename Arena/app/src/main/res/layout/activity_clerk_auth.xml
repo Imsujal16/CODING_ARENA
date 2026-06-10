@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/card_background"
+    android:background="@color/background_dark"
     android:fillViewport="true">
 
     <LinearLayout
@@ -11,14 +11,152 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingStart="@dimen/spacing_lg"
-        android:paddingTop="@dimen/spacing_md"
+        android:paddingTop="@dimen/spacing_lg"
         android:paddingEnd="@dimen/spacing_lg"
-        android:paddingBottom="@dimen/spacing_lg">
+        android:paddingBottom="@dimen/spacing_xl">
 
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="@drawable/bg_onboarding_illustration" />
+            android:layout_height="260dp"
+            android:background="@drawable/bg_auth_hero"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="ARENA"
+                    android:textColor="@color/text_white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_auth_chip"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/spacing_md"
+                    android:paddingEnd="@dimen/spacing_md"
+                    android:text="LIVE"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_caption" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="122dp"
+                android:background="@drawable/bg_auth_panel"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_auth_chip_blue"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:text="Y"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/text_title" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_md"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Logic sprint ready"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/text_body" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="MCQ battles, live rooms, ranked progress"
+                            android:textColor="#B7C0CC"
+                            android:textSize="@dimen/text_caption" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="52dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_auth_chip"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:text="1v1"
+                        android:textColor="#4AA3FF"
+                        android:textSize="@dimen/text_body_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_auth_chip_blue"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:text="FAST"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/text_caption" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="@dimen/spacing_sm"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_auth_chip"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:text="SMART"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/text_caption" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="@dimen/spacing_sm"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_auth_chip"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:text="RANKED"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/text_caption" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/text_auth_title"
@@ -26,8 +164,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_lg"
             android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/text_primary"
-            android:textSize="30sp" />
+            android:textColor="@color/text_white"
+            android:textSize="32sp" />
 
         <TextView
             android:id="@+id/text_auth_subtitle"
@@ -35,32 +173,37 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/poppins_regular"
-            android:lineSpacingMultiplier="1.2"
-            android:textColor="@color/text_secondary"
+            android:lineSpacingMultiplier="1.18"
+            android:textColor="#B7C0CC"
             android:textSize="@dimen/text_body_small" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:orientation="horizontal">
+            android:background="@drawable/bg_auth_tab_rail"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_xs">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_tab_sign_in"
-                style="@style/Widget.Arena.Button.Primary"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/auth_tab_sign_in" />
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/auth_tab_sign_in"
+                app:cornerRadius="24dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_tab_sign_up"
-                style="@style/Widget.Arena.Button.Outlined"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_sm"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_xs"
                 android:layout_weight="1"
-                android:text="@string/auth_tab_sign_up" />
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/auth_tab_sign_up"
+                app:cornerRadius="24dp" />
         </LinearLayout>
 
         <ProgressBar
@@ -69,6 +212,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/spacing_md"
+            android:indeterminateTint="@color/primary_blue"
             android:visibility="gone" />
 
         <TextView
@@ -77,40 +221,53 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_md"
             android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/text_secondary"
+            android:textColor="#B7C0CC"
             android:textSize="@dimen/text_body_small"
             android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_google_auth"
-            style="@style/Widget.Arena.Button.Outlined"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_height"
             android:layout_marginTop="@dimen/spacing_md"
-            android:text="@string/auth_google_cta" />
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/auth_google_cta"
+            android:textColor="@color/text_white"
+            app:backgroundTint="#17191F"
+            app:cornerRadius="26dp"
+            app:strokeColor="#2B3442"
+            app:strokeWidth="1dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_continue_guest"
-            style="@style/Widget.Arena.Button.Outlined"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_height"
             android:layout_marginTop="@dimen/spacing_sm"
-            android:text="@string/auth_guest_cta" />
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/auth_guest_cta"
+            android:textColor="#4AA3FF"
+            app:backgroundTint="#111318"
+            app:cornerRadius="26dp"
+            app:strokeColor="#2B3442"
+            app:strokeWidth="1dp" />
 
         <LinearLayout
             android:id="@+id/layout_sign_in_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:background="@drawable/bg_card_rounded"
-            android:elevation="@dimen/elevation_card"
+            android:background="@drawable/bg_auth_panel"
             android:orientation="vertical"
             android:padding="@dimen/spacing_md">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/auth_hint_identifier">
+                android:hint="@string/auth_hint_identifier"
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_sign_in_identifier"
@@ -118,7 +275,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -126,7 +284,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
                 android:hint="@string/auth_hint_password"
-                app:endIconMode="password_toggle">
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:endIconMode="password_toggle"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_sign_in_password"
@@ -134,16 +296,20 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="textPassword"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_sign_in_submit"
-                style="@style/Widget.Arena.Button.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginTop="@dimen/spacing_lg"
-                android:text="@string/auth_sign_in_cta" />
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/auth_sign_in_cta"
+                android:textColor="@color/text_white"
+                app:backgroundTint="@color/primary_blue"
+                app:cornerRadius="26dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -151,8 +317,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:background="@drawable/bg_card_rounded"
-            android:elevation="@dimen/elevation_card"
+            android:background="@drawable/bg_auth_panel"
             android:orientation="vertical"
             android:padding="@dimen/spacing_md"
             android:visibility="gone">
@@ -160,7 +325,11 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/auth_hint_full_name">
+                android:hint="@string/auth_hint_full_name"
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_sign_up_name"
@@ -168,14 +337,19 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="textPersonName"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
-                android:hint="@string/auth_hint_username">
+                android:hint="@string/auth_hint_username"
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_sign_up_username"
@@ -183,7 +357,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="textNoSuggestions"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -191,7 +366,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
-                android:hint="@string/auth_hint_email">
+                android:hint="@string/auth_hint_email"
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_sign_up_email"
@@ -199,7 +378,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -208,7 +388,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
                 android:hint="@string/auth_hint_password"
-                app:endIconMode="password_toggle">
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:endIconMode="password_toggle"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_sign_up_password"
@@ -216,14 +400,19 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="textPassword"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
-                android:hint="@string/auth_hint_bio">
+                android:hint="@string/auth_hint_bio"
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_sign_up_bio"
@@ -232,14 +421,19 @@
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="top|start"
                     android:inputType="textCapSentences|textMultiLine"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
-                android:hint="@string/auth_hint_location">
+                android:hint="@string/auth_hint_location"
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_sign_up_location"
@@ -247,14 +441,19 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="textCapWords"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
-                android:hint="@string/auth_hint_birthday">
+                android:hint="@string/auth_hint_birthday"
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_sign_up_birthday"
@@ -262,16 +461,20 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="date"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_sign_up_submit"
-                style="@style/Widget.Arena.Button.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginTop="@dimen/spacing_lg"
-                android:text="@string/auth_sign_up_cta" />
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/auth_sign_up_cta"
+                android:textColor="@color/text_white"
+                app:backgroundTint="@color/primary_blue"
+                app:cornerRadius="26dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -279,8 +482,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:background="@drawable/bg_card_rounded"
-            android:elevation="@dimen/elevation_card"
+            android:background="@drawable/bg_auth_panel"
             android:orientation="vertical"
             android:padding="@dimen/spacing_md"
             android:visibility="gone">
@@ -290,14 +492,18 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/auth_verify_hint"
-                android:textColor="@color/text_secondary"
+                android:textColor="#B7C0CC"
                 android:textSize="@dimen/text_body_small" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
-                android:hint="@string/auth_hint_verification_code">
+                android:hint="@string/auth_hint_verification_code"
+                app:boxBackgroundColor="#111318"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextColor="@color/primary_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_verification_code"
@@ -306,24 +512,33 @@
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="number"
                     android:maxLength="6"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_white"
+                    android:textColorHint="#8993A1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_verify_submit"
-                style="@style/Widget.Arena.Button.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginTop="@dimen/spacing_lg"
-                android:text="@string/auth_verify_cta" />
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/auth_verify_cta"
+                android:textColor="@color/text_white"
+                app:backgroundTint="@color/primary_blue"
+                app:cornerRadius="26dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_resend_code"
-                style="@style/Widget.Arena.Button.Outlined"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginTop="@dimen/spacing_sm"
-                android:text="@string/auth_resend_cta" />
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/auth_resend_cta"
+                android:textColor="#4AA3FF"
+                app:backgroundTint="#111318"
+                app:cornerRadius="26dp"
+                app:strokeColor="#2B3442"
+                app:strokeWidth="1dp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

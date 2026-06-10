@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 if (destId == R.id.onboardingFragment
                         || destId == R.id.battleResultFragment
                         || destId == R.id.problemSolverFragment
-                        || destId == R.id.editProfileFragment) {
+                        || destId == R.id.editProfileFragment
+                        || destId == R.id.publicProfileFragment) {
                     bottomNavigationView.setVisibility(View.GONE);
                 } else {
                     bottomNavigationView.setVisibility(View.VISIBLE);

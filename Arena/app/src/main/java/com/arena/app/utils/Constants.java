@@ -31,6 +31,7 @@ public class Constants {
     public static final String PREF_GUEST_MODE = "guest_mode";
     public static final String PREF_PROFILE_OVERRIDE = "profile_override";
     public static final String PREF_GUEST_PROFILE = "guest_profile";
+    public static final String PREF_BATTLE_DEMO_MODE = "battle_demo_mode";
 
     // Request timeout (seconds)
     public static final int CONNECT_TIMEOUT = 30;

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_accent">#4DA3FF</color>
+    <color name="secondary_accent">#9B8CFF</color>
+    <color name="tertiary_accent">#A6FF6A</color>
+
+    <color name="primary_blue">#4DA3FF</color>
+    <color name="primary_blue_dark">#1D75D8</color>
+    <color name="primary_blue_light">#8FD0FF</color>
+    <color name="accent">#A6FF6A</color>
+
+    <color name="background">#101114</color>
+    <color name="card_background">#1B1D22</color>
+    <color name="surface">#1B1D22</color>
+    <color name="background_dark">#0B0C0F</color>
+
+    <color name="champion_gold">#FFD700</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="bronze">#CD7F32</color>
+
+    <color name="xp_purple">#9B8CFF</color>
+    <color name="xp_purple_light">#C4BAFF</color>
+    <color name="coins_orange">#F8A13B</color>
+    <color name="coins_orange_light">#FFB570</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A7ACB5</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_blue">#4DA3FF</color>
+
+    <color name="success_green">#A6FF6A</color>
+    <color name="difficulty_easy">#A6FF6A</color>
+    <color name="difficulty_easy_bg">#1A2A1A</color>
+    <color name="difficulty_medium">#FF9F43</color>
+    <color name="difficulty_medium_bg">#2A1A0A</color>
+    <color name="difficulty_hard">#FF4D4D</color>
+    <color name="difficulty_hard_bg">#2A0A0A</color>
+
+    <color name="victory_teal">#44E3CE</color>
+    <color name="defeat_red">#FF4D4D</color>
+
+    <color name="fight_button_start">#1D75D8</color>
+    <color name="fight_button_end">#16C7F3</color>
+    <color name="gradient_top">#1B1D22</color>
+    <color name="gradient_bottom">#101114</color>
+    <color name="gradient_mid">#142235</color>
+
+    <color name="divider">#30333B</color>
+    <color name="shimmer_base">#252830</color>
+    <color name="shimmer_highlight">#333743</color>
+    <color name="overlay_dark">#B3000000</color>
+
+    <color name="chip_unselected_bg">#242833</color>
+    <color name="chip_selected_bg">#1D75D8</color>
+    <color name="streak_fire_bg">#2A1A0A</color>
+    <color name="level_ring">#16C7F3</color>
+
+    <color name="leaderboard_highlight">#13233A</color>
+    <color name="podium_1">#FFD700</color>
+    <color name="podium_2">#C0C0C0</color>
+    <color name="podium_3">#CD7F32</color>
+    <color name="podium_bg_1">#332A00</color>
+    <color name="podium_bg_2">#2A2A2A</color>
+    <color name="podium_bg_3">#331A00</color>
+
+    <color name="bottom_nav_active">#A6FF6A</color>
+    <color name="bottom_nav_inactive">#6E737D</color>
+
+    <color name="md_theme_primary">#4DA3FF</color>
+    <color name="md_theme_onPrimary">#000000</color>
+    <color name="md_theme_primaryContainer">#13233A</color>
+    <color name="md_theme_surface">#1B1D22</color>
+    <color name="md_theme_background">#101114</color>
+    <color name="md_theme_onBackground">#FFFFFF</color>
+    <color name="md_theme_onSurface">#FFFFFF</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="roadmap_blue_start">#1A237E</color>
+    <color name="roadmap_blue_end">#3949AB</color>
+    <color name="roadmap_green_start">#18331F</color>
+    <color name="roadmap_green_end">#2E7D39</color>
+
+    <color name="bg_chip_state_list">#242833</color>
+    <color name="text_chip_state_list">#FFFFFF</color>
+</resources>

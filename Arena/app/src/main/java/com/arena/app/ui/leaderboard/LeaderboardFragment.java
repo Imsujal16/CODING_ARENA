@@ -14,14 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.arena.app.R;
 import com.arena.app.adapters.LeaderboardAdapter;
-import com.arena.app.models.LeaderboardEntry;
 import com.arena.app.repository.LeaderboardRepository;
-
-import java.util.List;
+import com.arena.app.ui.profile.PublicProfileFragment;
+import com.facebook.shimmer.ShimmerFrameLayout;
+import android.widget.Toast;
 
 public class LeaderboardFragment extends Fragment {
 
     private LeaderboardAdapter adapter;
+    private ShimmerFrameLayout shimmer;
+    private boolean shimmerStopped = false;
+    private TextView tabFriends;
+    private TextView tabSchool;
+    private TextView tabGlobal;
 
     @Nullable
     @Override
@@ -34,68 +39,74 @@ public class LeaderboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Start shimmer immediately
+        shimmer = view.findViewById(R.id.shimmer_leaderboard);
+        if (shimmer != null) shimmer.startShimmer();
+
         setupRecyclerView(view);
+        setupActions(view);
         loadData(view);
     }
 
     private void setupRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_leaderboard);
         adapter = new LeaderboardAdapter();
+        adapter.setListener(entry ->
+                androidx.navigation.Navigation.findNavController(requireView()).navigate(
+                        R.id.publicProfileFragment,
+                        PublicProfileFragment.createArgs(entry)
+                ));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+        // Start hidden until shimmer stops
+        recyclerView.setAlpha(0f);
+    }
+
+    private void setupActions(View view) {
+        tabFriends = view.findViewById(R.id.tab_friends);
+        tabSchool = view.findViewById(R.id.tab_school);
+        tabGlobal = view.findViewById(R.id.tab_global);
+
+        view.findViewById(R.id.btn_lb_back).setOnClickListener(v ->
+                androidx.navigation.Navigation.findNavController(v).navigate(R.id.navigation_home));
+        view.findViewById(R.id.btn_view_solution).setOnClickListener(v ->
+                Toast.makeText(requireContext(), "Solutions are coming soon", Toast.LENGTH_SHORT).show());
+        view.findViewById(R.id.btn_play_more).setOnClickListener(v ->
+                androidx.navigation.Navigation.findNavController(v).navigate(R.id.navigation_arena));
+
+        tabFriends.setOnClickListener(v -> selectTab(tabFriends, "Friends leaderboard is coming soon"));
+        tabSchool.setOnClickListener(v -> selectTab(tabSchool, "College leaderboard is coming soon"));
+        tabGlobal.setOnClickListener(v -> selectTab(tabGlobal, "Showing global leaderboard"));
+    }
+
+    private void selectTab(TextView selected, String message) {
+        int inactive = requireContext().getColor(R.color.text_secondary);
+        int active = requireContext().getColor(R.color.primary_blue);
+        tabFriends.setTextColor(inactive);
+        tabSchool.setTextColor(inactive);
+        tabGlobal.setTextColor(inactive);
+        selected.setTextColor(active);
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     private void loadData(View view) {
         LeaderboardRepository repository = new LeaderboardRepository(requireContext());
         repository.getLeaderboard(null, 50).observe(getViewLifecycleOwner(), entries -> {
-            if (entries == null || entries.isEmpty()) {
-                return;
-            }
+            if (entries == null || entries.isEmpty()) return;
 
-            bindPodium(view, entries);
             adapter.setItems(entries);
-
-            LeaderboardEntry currentUser = repository.findCurrentUser(entries);
-            ((TextView) view.findViewById(R.id.text_current_rank))
-                    .setText(String.valueOf(currentUser.getRank()));
-            ((TextView) view.findViewById(R.id.text_current_username))
-                    .setText(currentUser.getUsername());
-            ((TextView) view.findViewById(R.id.text_total_xp_info))
-                    .setText(String.format("%,d", currentUser.getXp()));
-            ((TextView) view.findViewById(R.id.text_next_rank_info))
-                    .setText(resolveNextRankText(entries, currentUser));
+            stopShimmer(view);
         });
     }
 
-    private void bindPodium(View view, List<LeaderboardEntry> entries) {
-        bindPodiumEntry(view, entries, 0, R.id.text_rank1_name, R.id.text_rank1_xp);
-        bindPodiumEntry(view, entries, 1, R.id.text_rank2_name, R.id.text_rank2_xp);
-        bindPodiumEntry(view, entries, 2, R.id.text_rank3_name, R.id.text_rank3_xp);
-    }
-
-    private void bindPodiumEntry(View view, List<LeaderboardEntry> entries, int index,
-                                 int nameViewId, int xpViewId) {
-        if (entries.size() <= index) {
-            return;
-        }
-
-        LeaderboardEntry entry = entries.get(index);
-        ((TextView) view.findViewById(nameViewId)).setText(entry.getUsername());
-        ((TextView) view.findViewById(xpViewId)).setText(entry.getFormattedXp());
-    }
-
-    private String resolveNextRankText(List<LeaderboardEntry> entries, LeaderboardEntry currentUser) {
-        if (currentUser == null || currentUser.getRank() <= 1) {
-            return "TOP RANK";
-        }
-
-        for (LeaderboardEntry entry : entries) {
-            if (entry.getRank() == currentUser.getRank() - 1) {
-                int xpGap = Math.max(entry.getXp() - currentUser.getXp(), 0);
-                return "NEXT RANK: " + xpGap + " XP";
-            }
-        }
-
-        return "NEXT RANK: --";
+    private void stopShimmer(View root) {
+        if (shimmerStopped || shimmer == null) return;
+        shimmerStopped = true;
+        shimmer.stopShimmer();
+        shimmer.animate().alpha(0f).setDuration(300).withEndAction(() -> {
+            shimmer.setVisibility(View.GONE);
+            RecyclerView rv = root.findViewById(R.id.recycler_leaderboard);
+            if (rv != null) rv.animate().alpha(1f).setDuration(400).start();
+        }).start();
     }
 }

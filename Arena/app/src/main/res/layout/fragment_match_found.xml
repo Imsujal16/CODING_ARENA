@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:id="@+id/root_match_found">
+
+    <!-- ══════════════ VS Header ══════════════ -->
+    <TextView
+        android:id="@+id/text_match_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="0.25"
+        android:text="MATCH FOUND"
+        android:textColor="@color/primary_accent"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginTop="64dp" />
+
+    <!-- ══════════════ Player Card (You) ══════════════ -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_player"
+        android:layout_width="140dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="32dp"
+        android:alpha="0"
+        app:cardBackgroundColor="@color/surface"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toStartOf="@id/text_vs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_match_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_player_avatar"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:civ_border_color="@color/primary_accent"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/text_player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:text="You"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_player_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                android:text="Unranked"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- VS badge -->
+    <TextView
+        android:id="@+id/text_vs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:fontFamily="sans-serif-black"
+        android:text="VS"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@id/card_player"
+        app:layout_constraintEnd_toStartOf="@id/card_opponent"
+        app:layout_constraintStart_toEndOf="@id/card_player"
+        app:layout_constraintTop_toTopOf="@id/card_player" />
+
+    <!-- ══════════════ Opponent Card ══════════════ -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_opponent"
+        android:layout_width="140dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="32dp"
+        android:alpha="0"
+        app:cardBackgroundColor="@color/surface"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_vs"
+        app:layout_constraintTop_toBottomOf="@id/text_match_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_opponent_avatar"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:civ_border_color="@color/defeat_red"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/text_opponent_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:text="CodeWarrior_42"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_opponent_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                android:text="Silver II"
+                android:textColor="@color/silver"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ══════════════ Mode badge ══════════════ -->
+    <TextView
+        android:id="@+id/text_battle_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:alpha="0"
+        android:background="@drawable/bg_chip_unselected"
+        android:fontFamily="sans-serif-medium"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="8dp"
+        android:text="⚡  CODING BATTLE"
+        android:textColor="@color/primary_accent"
+        android:textSize="12sp"
+        android:letterSpacing="0.08"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_player" />
+
+    <!-- ══════════════ Countdown ══════════════ -->
+    <TextView
+        android:id="@+id/text_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="sans-serif-black"
+        android:text="3"
+        android:textColor="@color/white"
+        android:textSize="72sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_battle_mode" />
+
+    <TextView
+        android:id="@+id/text_countdown_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:letterSpacing="0.1"
+        android:text="GET READY"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_countdown" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,11 +16,20 @@ import java.util.List;
 
 public class TopicMasteryAdapter extends RecyclerView.Adapter<TopicMasteryAdapter.ViewHolder> {
 
+    public interface OnTopicClickListener {
+        void onTopicClicked(TopicMastery topic);
+    }
+
     private List<TopicMastery> items = new ArrayList<>();
+    private OnTopicClickListener listener;
 
     public void setItems(List<TopicMastery> items) {
         this.items = items;
         notifyDataSetChanged();
+    }
+
+    public void setListener(OnTopicClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -33,7 +42,7 @@ public class TopicMasteryAdapter extends RecyclerView.Adapter<TopicMasteryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(items.get(position));
+        holder.bind(items.get(position), listener);
     }
 
     @Override
@@ -49,10 +58,15 @@ public class TopicMasteryAdapter extends RecyclerView.Adapter<TopicMasteryAdapte
             textProgress = itemView.findViewById(R.id.text_topic_progress);
         }
 
-        void bind(TopicMastery item) {
+        void bind(TopicMastery item, OnTopicClickListener listener) {
             textName.setText(item.getName());
             textNext.setText("Next: " + item.getNextProblem());
             textProgress.setText(item.getProgressText());
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onTopicClicked(item);
+                }
+            });
         }
     }
 }

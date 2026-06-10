@@ -3,106 +3,114 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/background_dark"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/spacing_md">
+        android:paddingBottom="88dp">
 
-        <!-- Banner Image -->
         <ImageView
             android:id="@+id/img_banner"
             android:layout_width="0dp"
-            android:layout_height="@dimen/banner_height"
+            android:layout_height="188dp"
+            android:background="@drawable/bg_profile_banner_default"
             android:scaleType="centerCrop"
-            android:background="@color/primary_blue_dark"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Banner overlay buttons -->
+        <TextView
+            android:id="@+id/text_profile_banner_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:shadowColor="@color/text_white"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="0"
+            android:text="MASTER"
+            android:textColor="#1D1E22"
+            android:textSize="@dimen/text_title"
+            app:layout_constraintBottom_toBottomOf="@id/img_banner"
+            app:layout_constraintEnd_toEndOf="@id/img_banner"
+            app:layout_constraintStart_toStartOf="@id/img_banner"
+            app:layout_constraintTop_toTopOf="@id/img_banner" />
+
         <LinearLayout
             android:id="@+id/banner_actions"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="end|center_vertical"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/spacing_md"
-            app:layout_constraintTop_toTopOf="@id/img_banner"
+            android:paddingHorizontal="@dimen/spacing_lg"
+            android:paddingTop="@dimen/spacing_lg"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toTopOf="@id/img_banner">
 
             <ImageView
                 android:id="@+id/btn_share"
-                android:layout_width="@dimen/icon_size_large"
-                android:layout_height="@dimen/icon_size_large"
-                android:layout_marginEnd="@dimen/spacing_sm"
-                android:padding="4dp"
-                android:src="@drawable/ic_nav_home"
-                app:tint="@color/text_white"
-                android:contentDescription="@string/cd_share" />
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/bg_profile_icon_button"
+                android:contentDescription="@string/cd_share"
+                android:padding="10dp"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/text_white" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/btn_profile_settings"
-                android:layout_width="@dimen/icon_size_large"
-                android:layout_height="@dimen/icon_size_large"
-                android:layout_marginEnd="@dimen/spacing_sm"
-                android:padding="4dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/bg_profile_icon_button"
+                android:contentDescription="@string/cd_settings"
+                android:padding="10dp"
                 android:src="@drawable/ic_search"
-                app:tint="@color/text_white"
-                android:contentDescription="@string/cd_settings" />
-
-            <TextView
-                android:id="@+id/btn_edit_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_button_white"
-                android:fontFamily="@font/poppins_medium"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="6dp"
-                android:text="@string/edit_profile"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_caption" />
+                app:tint="@color/text_white" />
         </LinearLayout>
 
-        <!-- Avatar -->
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_profile_avatar"
             android:layout_width="@dimen/avatar_large"
             android:layout_height="@dimen/avatar_large"
+            android:layout_marginStart="@dimen/spacing_lg"
             android:src="@drawable/bg_avatar_circle"
-            app:civ_border_color="@color/card_background"
+            app:civ_border_color="@color/background_dark"
             app:civ_border_width="4dp"
-            app:layout_constraintTop_toBottomOf="@id/img_banner"
             app:layout_constraintBottom_toBottomOf="@id/img_banner"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="@dimen/spacing_lg" />
+            app:layout_constraintTop_toBottomOf="@id/img_banner" />
 
         <TextView
             android:id="@+id/text_profile_avatar_initial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
             android:text="G"
             android:textColor="@color/text_white"
             android:textSize="28sp"
-            android:fontFamily="@font/poppins_bold"
-            app:layout_constraintTop_toTopOf="@id/img_profile_avatar"
             app:layout_constraintBottom_toBottomOf="@id/img_profile_avatar"
+            app:layout_constraintEnd_toEndOf="@id/img_profile_avatar"
             app:layout_constraintStart_toStartOf="@id/img_profile_avatar"
-            app:layout_constraintEnd_toEndOf="@id/img_profile_avatar" />
+            app:layout_constraintTop_toTopOf="@id/img_profile_avatar" />
 
-        <!-- Stats: POINTS | STREAK -->
         <LinearLayout
             android:id="@+id/layout_stats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_sm"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/img_banner"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/spacing_lg">
+            app:layout_constraintTop_toBottomOf="@id/img_banner">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -116,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
                     android:text="1.2k"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/text_white"
                     android:textSize="@dimen/text_headline_3" />
 
                 <TextView
@@ -130,9 +138,9 @@
 
             <View
                 android:layout_width="1dp"
-                android:layout_height="40dp"
+                android:layout_height="38dp"
                 android:layout_marginHorizontal="@dimen/spacing_md"
-                android:background="@color/divider" />
+                android:background="#35363C" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -146,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
                     android:text="84"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/text_white"
                     android:textSize="@dimen/text_headline_3" />
 
                 <TextView
@@ -159,25 +167,27 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Username + verified -->
         <LinearLayout
             android:id="@+id/layout_username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_lg"
-            android:layout_marginTop="@dimen/spacing_sm"
+            android:layout_marginTop="@dimen/spacing_md"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/img_profile_avatar"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintEnd_toStartOf="@id/layout_stats"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_profile_avatar">
 
             <TextView
                 android:id="@+id/text_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_bold"
+                android:maxLines="1"
                 android:text="Gautam"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/text_white"
                 android:textSize="@dimen/text_headline_2" />
 
             <ImageView
@@ -186,21 +196,38 @@
                 android:layout_height="20dp"
                 android:layout_marginStart="6dp"
                 android:src="@drawable/ic_check"
-                app:tint="@color/primary_blue" />
+                app:tint="@color/primary_accent" />
         </LinearLayout>
 
-        <!-- Handle -->
+        <TextView
+            android:id="@+id/btn_edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:background="@drawable/bg_profile_action_button"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:text="@string/edit_profile"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_body_small"
+            app:layout_constraintBottom_toBottomOf="@id/text_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_handle" />
+
         <TextView
             android:id="@+id/text_handle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginTop="2dp"
             android:fontFamily="@font/poppins_regular"
             android:text="\@ggupta78"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_body_small"
-            app:layout_constraintTop_toBottomOf="@id/layout_username"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/btn_edit_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_username" />
 
         <TextView
             android:id="@+id/text_email"
@@ -211,43 +238,70 @@
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_body_small"
-            app:layout_constraintTop_toBottomOf="@id/text_handle"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/btn_edit_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_handle" />
 
-        <!-- Bio -->
         <TextView
             android:id="@+id/text_bio"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_lg"
-            android:layout_marginTop="@dimen/spacing_md"
+            android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/poppins_regular"
             android:text="Co-Founder - Sevenfold"
-            android:textColor="@color/text_primary"
+            android:textColor="@color/text_white"
             android:textSize="@dimen/text_body_small"
-            app:layout_constraintTop_toBottomOf="@id/text_email"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/text_email" />
 
-        <!-- Location, Joined, Birthday row -->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_md"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_bio">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="14dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/shimmer_base" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/shimmer_base" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <LinearLayout
             android:id="@+id/layout_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_sm"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_bio"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/text_bio">
 
             <TextView
                 android:id="@+id/text_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:text="📍 Delhi, India"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_caption" />
 
@@ -257,21 +311,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_sm"
                 android:fontFamily="@font/poppins_regular"
-                android:text="📅 Joined Jan 2026"
                 android:textColor="@color/text_secondary"
-                android:textSize="@dimen/text_caption" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_sm"
-                android:fontFamily="@font/poppins_medium"
-                android:text="🔗 Links"
-                android:textColor="@color/primary_blue"
                 android:textSize="@dimen/text_caption" />
         </LinearLayout>
 
-        <!-- Birthday -->
         <TextView
             android:id="@+id/text_birthday"
             android:layout_width="0dp"
@@ -279,29 +322,49 @@
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_xs"
             android:fontFamily="@font/poppins_regular"
-            android:text="🎂 Born June 25, 1996"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_caption"
-            app:layout_constraintTop_toBottomOf="@id/layout_info"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_info" />
 
-        <TextView
-            android:id="@+id/btn_logout_profile"
+        <LinearLayout
+            android:id="@+id/profile_action_row"
             android:layout_width="0dp"
-            android:layout_height="44dp"
+            android:layout_height="48dp"
             android:layout_marginHorizontal="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_md"
-            android:background="@drawable/bg_button_outlined"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center"
-            android:text="@string/logout"
-            android:textColor="@color/difficulty_hard"
-            android:textSize="@dimen/text_body_small"
-            app:layout_constraintTop_toBottomOf="@id/text_birthday"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/text_birthday">
 
-        <!-- Recent Activity Header -->
+            <TextView
+                android:id="@+id/text_profile_share_pill"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_profile_action_button"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="Share profile"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/text_body_small" />
+
+            <TextView
+                android:id="@+id/btn_logout_profile"
+                android:layout_width="112dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:background="@drawable/bg_profile_action_button"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="@string/logout"
+                android:textColor="@color/difficulty_hard"
+                android:textSize="@dimen/text_body_small" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/text_recent_header"
             android:layout_width="0dp"
@@ -310,11 +373,11 @@
             android:layout_marginTop="@dimen/spacing_lg"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/recent_activity"
-            android:textColor="@color/text_primary"
+            android:textColor="@color/text_white"
             android:textSize="@dimen/text_headline_3"
-            app:layout_constraintTop_toBottomOf="@id/btn_logout_profile"
+            app:layout_constraintEnd_toStartOf="@id/text_activity_filter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/text_activity_filter" />
+            app:layout_constraintTop_toBottomOf="@id/profile_action_row" />
 
         <TextView
             android:id="@+id/text_activity_filter"
@@ -322,14 +385,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/spacing_lg"
             android:fontFamily="@font/poppins_medium"
-            android:text="All ↓"
+            android:text="All"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_body_small"
-            app:layout_constraintTop_toTopOf="@id/text_recent_header"
             app:layout_constraintBottom_toBottomOf="@id/text_recent_header"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_recent_header" />
 
-        <!-- Recent Activity Grid -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_recent_activity"
             android:layout_width="0dp"
@@ -337,9 +399,9 @@
             android:layout_marginHorizontal="@dimen/spacing_md"
             android:layout_marginTop="@dimen/spacing_sm"
             android:nestedScrollingEnabled="false"
-            app:layout_constraintTop_toBottomOf="@id/text_recent_header"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/text_recent_header" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
